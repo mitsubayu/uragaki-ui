@@ -591,7 +591,7 @@ export function HomePage() {
       <footer className="max-w-4xl mx-auto px-6 pb-12 text-center">
         <UragakiSeparator className="mb-8" />
         <p className="text-sm text-muted-foreground">
-          Inspired by Microsoft SketchFlow, which pioneered sketchy UI for prototyping.
+          With great respect to Microsoft SketchFlow, which pioneered sketchy UI for prototyping.
         </p>
       </footer>
     </div>
