@@ -1,0 +1,1267 @@
+# Uragaki UI - Full API Reference
+
+> Hand-drawn, sketchy UI component library built on shadcn/ui + rough.js for React.
+> For quick overview, see llms.txt
+
+---
+
+## Installation & Setup
+
+### Install
+```bash
+npm install @yu-izumoto/uragaki-ui roughjs
+```
+
+### Required Peer Dependencies
+- react >= 18, react-dom >= 18
+- tailwindcss >= 4
+- roughjs ^4.6.0
+- class-variance-authority ^0.7.0
+- clsx ^2.0.0
+- tailwind-merge ^3.0.0
+- radix-ui ^1.0.0
+- lucide-react >= 0.300.0 (optional, for icons)
+
+### Setup
+```tsx
+import "@yu-izumoto/uragaki-ui/styles.css";
+import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system">
+      {/* your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+### CSS Classes Available
+- `.uragaki-paper` - Paper texture background with 24px grid pattern
+- `.uragaki-wobble` - Keyframe animation (rotate + scale)
+- `.uragaki-hover` - Applies wobble animation on hover
+- `.uragaki-no-border` - Removes borders
+
+### CSS Custom Properties (Design Tokens)
+Light theme (oklch):
+- `--background`: oklch(0.97 0.005 90) - Warm paper
+- `--foreground`: oklch(0.25 0.02 60) - Dark text
+- `--primary`: oklch(0.45 0.15 250) - Blue pencil
+- `--secondary`: oklch(0.88 0.01 80) - Muted gray
+- `--accent`: oklch(0.85 0.08 75) - Soft amber
+- `--destructive`: oklch(0.55 0.2 25) - Red pencil
+- `--border`: oklch(0.65 0.01 70)
+
+Font variables:
+- `--font-uragaki-body`: 'Sketchflow Print', 'Yusei Magic', cursive
+- `--font-uragaki-heading`: 'Sketchflow Print', 'Yusei Magic', cursive
+- `--font-uragaki-accent`: 'Sketchflow Print', 'Hachi Maru Pop', cursive
+
+---
+
+## Architecture
+
+### How It Works
+1. Each Uragaki component wraps a shadcn/ui (Radix UI) component
+2. An SVG overlay is rendered using rough.js for hand-drawn borders
+3. SVG uses `pointer-events: none` so underlying component stays fully interactive
+4. All accessibility features from Radix UI are preserved
+
+### Common Props (available on most components)
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | How rough/sketchy the borders look |
+| seed | number | auto | Fixed seed for consistent rendering (prevents flicker) |
+| className | string | - | Additional CSS classes |
+
+### Rough.js Defaults
+- roughness: 2.6
+- bowing: 1.8
+- strokeWidth: 2
+- fillStyle: "hachure"
+- hachureAngle: -41
+- hachureGap: 5
+
+---
+
+## Utilities
+
+### ThemeProvider
+Manages light/dark theme with system preference detection.
+
+```tsx
+import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+
+<ThemeProvider
+  defaultTheme="system"  // "light" | "dark" | "system"
+  storageKey="uragaki-ui-theme"  // localStorage key
+>
+  {children}
+</ThemeProvider>
+```
+
+### useTheme
+```tsx
+import { useTheme } from "@yu-izumoto/uragaki-ui";
+
+const { theme, setTheme, resolvedTheme } = useTheme();
+// theme: "light" | "dark" | "system"
+// resolvedTheme: "light" | "dark" (actual resolved value)
+```
+
+### UragakiBorder
+Core wrapper that adds rough.js borders to any content.
+
+```tsx
+import { UragakiBorder } from "@yu-izumoto/uragaki-ui";
+
+<UragakiBorder
+  roughness={2.6}
+  bowing={1.8}
+  strokeWidth={2}
+  stroke="currentColor"
+  fill="#f0f0f0"           // optional fill color
+  fillStyle="hachure"      // "hachure" | "cross-hatch" | "dots" | etc.
+  seed={42}                // fixed seed for consistent rendering
+  padding={0}
+  shape="rectangle"        // "rectangle" | "ellipse"
+  block={false}            // display: block vs inline
+>
+  {children}
+</UragakiBorder>
+```
+
+---
+
+## Components - Full API
+
+### UragakiButton
+Hand-drawn button with multiple variants.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | "default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" | "default" | Visual style |
+| size | "default" \| "sm" \| "lg" \| "icon" | "default" | Button size |
+| asChild | boolean | false | Render as child element (Radix Slot) |
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+```tsx
+import { UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiButton variant="default">Primary</UragakiButton>
+<UragakiButton variant="destructive">Delete</UragakiButton>
+<UragakiButton variant="outline">Outline</UragakiButton>
+<UragakiButton variant="secondary">Secondary</UragakiButton>
+<UragakiButton variant="ghost">Ghost</UragakiButton>
+<UragakiButton variant="link">Link</UragakiButton>
+<UragakiButton size="sm">Small</UragakiButton>
+<UragakiButton size="lg">Large</UragakiButton>
+<UragakiButton size="icon"><IconComponent /></UragakiButton>
+```
+
+Variant behavior:
+- default: Primary color fill, white text
+- destructive: Red fill, white text
+- outline: Border only, no fill
+- secondary: Gray fill
+- ghost: Transparent, no border
+- link: Transparent, underline text
+
+---
+
+### UragakiInput
+Hand-drawn text input with two border styles.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| borderStyle | "underline" \| "box" | "underline" | Border drawing style |
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+| + all standard input props | | | type, placeholder, value, onChange, etc. |
+
+```tsx
+import { UragakiInput } from "@yu-izumoto/uragaki-ui";
+
+<UragakiInput placeholder="Name" />
+<UragakiInput borderStyle="box" placeholder="Boxed input" />
+<UragakiInput type="password" placeholder="Password" />
+<UragakiInput type="email" placeholder="Email" />
+```
+
+---
+
+### UragakiTextarea
+Hand-drawn textarea with rough.js box border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+| + all standard textarea props | | | placeholder, rows, value, onChange, etc. |
+
+```tsx
+import { UragakiTextarea } from "@yu-izumoto/uragaki-ui";
+
+<UragakiTextarea placeholder="Write something..." rows={4} />
+```
+
+---
+
+### UragakiCard
+Hand-drawn card container with header, content, and footer sections.
+
+**Subcomponents:** UragakiCardHeader, UragakiCardTitle, UragakiCardDescription, UragakiCardContent, UragakiCardFooter, UragakiCardAction
+
+| Prop (Card) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+| className | string | - | Additional CSS classes |
+
+```tsx
+import {
+  UragakiCard, UragakiCardHeader, UragakiCardTitle,
+  UragakiCardDescription, UragakiCardContent, UragakiCardFooter
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiCard>
+  <UragakiCardHeader>
+    <UragakiCardTitle>Card Title</UragakiCardTitle>
+    <UragakiCardDescription>Card description</UragakiCardDescription>
+  </UragakiCardHeader>
+  <UragakiCardContent>
+    <p>Card content goes here</p>
+  </UragakiCardContent>
+  <UragakiCardFooter>
+    <UragakiButton>Action</UragakiButton>
+  </UragakiCardFooter>
+</UragakiCard>
+```
+
+---
+
+### UragakiBadge
+Inline badge with ellipse-shaped rough.js border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | "default" \| "destructive" \| "secondary" \| "outline" | "default" | Visual style |
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+```tsx
+import { UragakiBadge } from "@yu-izumoto/uragaki-ui";
+
+<UragakiBadge>Default</UragakiBadge>
+<UragakiBadge variant="destructive">Error</UragakiBadge>
+<UragakiBadge variant="secondary">Info</UragakiBadge>
+<UragakiBadge variant="outline">Outline</UragakiBadge>
+```
+
+---
+
+### UragakiAlert
+Alert box with variant-based styling.
+
+**Subcomponents:** UragakiAlertTitle, UragakiAlertDescription
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| variant | "default" \| "destructive" | "default" | Alert style |
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+```tsx
+import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "@yu-izumoto/uragaki-ui";
+
+<UragakiAlert>
+  <UragakiAlertTitle>Heads up!</UragakiAlertTitle>
+  <UragakiAlertDescription>Something to note.</UragakiAlertDescription>
+</UragakiAlert>
+
+<UragakiAlert variant="destructive">
+  <UragakiAlertTitle>Error</UragakiAlertTitle>
+  <UragakiAlertDescription>Something went wrong.</UragakiAlertDescription>
+</UragakiAlert>
+```
+
+---
+
+### UragakiCheckbox
+Hand-drawn checkbox with rough.js SVG rendering.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+| checked | boolean | - | Controlled checked state |
+| onCheckedChange | (checked: boolean) => void | - | Change handler |
+
+```tsx
+import { UragakiCheckbox } from "@yu-izumoto/uragaki-ui";
+import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+
+<div className="flex items-center gap-2">
+  <UragakiCheckbox id="terms" />
+  <UragakiLabel htmlFor="terms">Accept terms</UragakiLabel>
+</div>
+```
+
+---
+
+### UragakiRadioGroup
+Hand-drawn radio buttons with ellipse-shaped borders.
+
+**Subcomponents:** UragakiRadioGroupItem
+
+```tsx
+import { UragakiRadioGroup, UragakiRadioGroupItem } from "@yu-izumoto/uragaki-ui";
+import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+
+<UragakiRadioGroup defaultValue="option1">
+  <div className="flex items-center gap-2">
+    <UragakiRadioGroupItem value="option1" id="opt1" />
+    <UragakiLabel htmlFor="opt1">Option 1</UragakiLabel>
+  </div>
+  <div className="flex items-center gap-2">
+    <UragakiRadioGroupItem value="option2" id="opt2" />
+    <UragakiLabel htmlFor="opt2">Option 2</UragakiLabel>
+  </div>
+</UragakiRadioGroup>
+```
+
+---
+
+### UragakiSelect
+Hand-drawn select dropdown.
+
+**Subcomponents:** UragakiSelectTrigger, UragakiSelectContent, UragakiSelectItem, UragakiSelectValue, UragakiSelectGroup, UragakiSelectLabel
+
+| Prop (Trigger) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+| Prop (Content) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| position | "popper" \| "item-aligned" | "popper" | Dropdown positioning |
+
+```tsx
+import {
+  UragakiSelect, UragakiSelectTrigger, UragakiSelectContent,
+  UragakiSelectItem, UragakiSelectValue
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiSelect>
+  <UragakiSelectTrigger className="w-[200px]">
+    <UragakiSelectValue placeholder="Select..." />
+  </UragakiSelectTrigger>
+  <UragakiSelectContent>
+    <UragakiSelectItem value="apple">Apple</UragakiSelectItem>
+    <UragakiSelectItem value="banana">Banana</UragakiSelectItem>
+    <UragakiSelectItem value="cherry">Cherry</UragakiSelectItem>
+  </UragakiSelectContent>
+</UragakiSelect>
+```
+
+---
+
+### UragakiSwitch
+Hand-drawn toggle switch with ellipse border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+| checked | boolean | - | Controlled state |
+| onCheckedChange | (checked: boolean) => void | - | Change handler |
+
+```tsx
+import { UragakiSwitch } from "@yu-izumoto/uragaki-ui";
+
+<div className="flex items-center gap-2">
+  <UragakiSwitch id="notifications" />
+  <UragakiLabel htmlFor="notifications">Notifications</UragakiLabel>
+</div>
+```
+
+---
+
+### UragakiSlider
+Range slider with sketchy styling.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| defaultValue | number[] | - | Initial value(s) |
+| min | number | 0 | Minimum value |
+| max | number | 100 | Maximum value |
+| step | number | 1 | Step increment |
+
+```tsx
+import { UragakiSlider } from "@yu-izumoto/uragaki-ui";
+
+<UragakiSlider defaultValue={[50]} max={100} step={1} />
+```
+
+---
+
+### UragakiToggle / UragakiToggleGroup
+Hand-drawn toggle buttons.
+
+```tsx
+import { UragakiToggle } from "@yu-izumoto/uragaki-ui";
+import { UragakiToggleGroup, UragakiToggleGroupItem } from "@yu-izumoto/uragaki-ui";
+import { Bold, Italic, Underline } from "lucide-react";
+
+<UragakiToggle aria-label="Toggle bold">
+  <Bold className="h-4 w-4" />
+</UragakiToggle>
+
+<UragakiToggleGroup type="multiple">
+  <UragakiToggleGroupItem value="bold"><Bold className="h-4 w-4" /></UragakiToggleGroupItem>
+  <UragakiToggleGroupItem value="italic"><Italic className="h-4 w-4" /></UragakiToggleGroupItem>
+  <UragakiToggleGroupItem value="underline"><Underline className="h-4 w-4" /></UragakiToggleGroupItem>
+</UragakiToggleGroup>
+```
+
+---
+
+### UragakiTabs
+Tabbed interface with rough.js active state.
+
+**Subcomponents:** UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent
+
+| Prop (TabsTrigger) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| value | string | required | Tab identifier |
+
+```tsx
+import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "@yu-izumoto/uragaki-ui";
+
+<UragakiTabs defaultValue="account">
+  <UragakiTabsList>
+    <UragakiTabsTrigger value="account">Account</UragakiTabsTrigger>
+    <UragakiTabsTrigger value="settings">Settings</UragakiTabsTrigger>
+  </UragakiTabsList>
+  <UragakiTabsContent value="account">Account settings here</UragakiTabsContent>
+  <UragakiTabsContent value="settings">General settings here</UragakiTabsContent>
+</UragakiTabs>
+```
+
+---
+
+### UragakiAccordion
+Expandable sections with rough.js borders.
+
+**Subcomponents:** UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| type | "single" \| "multiple" | required | Single or multi expand |
+| collapsible | boolean | false | Allow all closed (single mode) |
+| roughness | number | 2.6 | Border roughness |
+
+```tsx
+import { UragakiAccordion, UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent } from "@yu-izumoto/uragaki-ui";
+
+<UragakiAccordion type="single" collapsible>
+  <UragakiAccordionItem value="item-1">
+    <UragakiAccordionTrigger>Section 1</UragakiAccordionTrigger>
+    <UragakiAccordionContent>Content 1</UragakiAccordionContent>
+  </UragakiAccordionItem>
+  <UragakiAccordionItem value="item-2">
+    <UragakiAccordionTrigger>Section 2</UragakiAccordionTrigger>
+    <UragakiAccordionContent>Content 2</UragakiAccordionContent>
+  </UragakiAccordionItem>
+</UragakiAccordion>
+```
+
+---
+
+### UragakiDialog
+Modal dialog with hand-drawn borders and close button.
+
+**Subcomponents:** UragakiDialogTrigger, UragakiDialogContent, UragakiDialogHeader, UragakiDialogFooter, UragakiDialogTitle, UragakiDialogDescription
+
+| Prop (Content) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+```tsx
+import {
+  UragakiDialog, UragakiDialogTrigger, UragakiDialogContent,
+  UragakiDialogHeader, UragakiDialogFooter, UragakiDialogTitle,
+  UragakiDialogDescription, UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiDialog>
+  <UragakiDialogTrigger asChild>
+    <UragakiButton variant="outline">Edit Profile</UragakiButton>
+  </UragakiDialogTrigger>
+  <UragakiDialogContent>
+    <UragakiDialogHeader>
+      <UragakiDialogTitle>Edit Profile</UragakiDialogTitle>
+      <UragakiDialogDescription>Make changes to your profile.</UragakiDialogDescription>
+    </UragakiDialogHeader>
+    <div className="space-y-4">
+      <UragakiInput placeholder="Name" />
+      <UragakiInput placeholder="Email" type="email" />
+    </div>
+    <UragakiDialogFooter>
+      <UragakiButton>Save changes</UragakiButton>
+    </UragakiDialogFooter>
+  </UragakiDialogContent>
+</UragakiDialog>
+```
+
+---
+
+### UragakiAlertDialog
+Confirmation dialog (non-dismissable by clicking outside).
+
+**Subcomponents:** UragakiAlertDialogTrigger, UragakiAlertDialogContent, UragakiAlertDialogHeader, UragakiAlertDialogFooter, UragakiAlertDialogTitle, UragakiAlertDialogDescription, UragakiAlertDialogAction, UragakiAlertDialogCancel
+
+```tsx
+import {
+  UragakiAlertDialog, UragakiAlertDialogTrigger, UragakiAlertDialogContent,
+  UragakiAlertDialogHeader, UragakiAlertDialogFooter, UragakiAlertDialogTitle,
+  UragakiAlertDialogDescription, UragakiAlertDialogAction, UragakiAlertDialogCancel,
+  UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiAlertDialog>
+  <UragakiAlertDialogTrigger asChild>
+    <UragakiButton variant="destructive">Delete</UragakiButton>
+  </UragakiAlertDialogTrigger>
+  <UragakiAlertDialogContent>
+    <UragakiAlertDialogHeader>
+      <UragakiAlertDialogTitle>Are you sure?</UragakiAlertDialogTitle>
+      <UragakiAlertDialogDescription>This action cannot be undone.</UragakiAlertDialogDescription>
+    </UragakiAlertDialogHeader>
+    <UragakiAlertDialogFooter>
+      <UragakiAlertDialogCancel>Cancel</UragakiAlertDialogCancel>
+      <UragakiAlertDialogAction>Delete</UragakiAlertDialogAction>
+    </UragakiAlertDialogFooter>
+  </UragakiAlertDialogContent>
+</UragakiAlertDialog>
+```
+
+---
+
+### UragakiSheet
+Slide-in panel (side drawer).
+
+**Subcomponents:** UragakiSheetTrigger, UragakiSheetContent, UragakiSheetHeader, UragakiSheetFooter, UragakiSheetTitle, UragakiSheetDescription, UragakiSheetClose
+
+```tsx
+import {
+  UragakiSheet, UragakiSheetTrigger, UragakiSheetContent,
+  UragakiSheetHeader, UragakiSheetTitle, UragakiSheetDescription,
+  UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiSheet>
+  <UragakiSheetTrigger asChild>
+    <UragakiButton variant="outline">Open Panel</UragakiButton>
+  </UragakiSheetTrigger>
+  <UragakiSheetContent>
+    <UragakiSheetHeader>
+      <UragakiSheetTitle>Settings</UragakiSheetTitle>
+      <UragakiSheetDescription>Manage your preferences.</UragakiSheetDescription>
+    </UragakiSheetHeader>
+    <div className="py-4">Content here</div>
+  </UragakiSheetContent>
+</UragakiSheet>
+```
+
+---
+
+### UragakiDrawer
+Bottom sheet / drawer (mobile-friendly, uses vaul).
+
+**Subcomponents:** UragakiDrawerTrigger, UragakiDrawerClose, UragakiDrawerContent, UragakiDrawerHeader, UragakiDrawerFooter, UragakiDrawerTitle, UragakiDrawerDescription
+
+```tsx
+import {
+  UragakiDrawer, UragakiDrawerTrigger, UragakiDrawerContent,
+  UragakiDrawerHeader, UragakiDrawerTitle, UragakiDrawerDescription,
+  UragakiDrawerFooter, UragakiDrawerClose, UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiDrawer>
+  <UragakiDrawerTrigger asChild>
+    <UragakiButton variant="outline">Open Drawer</UragakiButton>
+  </UragakiDrawerTrigger>
+  <UragakiDrawerContent>
+    <UragakiDrawerHeader>
+      <UragakiDrawerTitle>Menu</UragakiDrawerTitle>
+      <UragakiDrawerDescription>Select an option</UragakiDrawerDescription>
+    </UragakiDrawerHeader>
+    <div className="p-4">Drawer content</div>
+    <UragakiDrawerFooter>
+      <UragakiDrawerClose asChild>
+        <UragakiButton variant="outline">Close</UragakiButton>
+      </UragakiDrawerClose>
+    </UragakiDrawerFooter>
+  </UragakiDrawerContent>
+</UragakiDrawer>
+```
+
+---
+
+### UragakiPopover
+Floating content anchored to a trigger.
+
+**Subcomponents:** UragakiPopoverTrigger, UragakiPopoverContent
+
+| Prop (Content) | Type | Default | Description |
+|------|------|---------|-------------|
+| roughness | number | 2.6 | Border roughness |
+| seed | number | auto | Rendering seed |
+
+```tsx
+import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiPopover>
+  <UragakiPopoverTrigger asChild>
+    <UragakiButton variant="outline">Info</UragakiButton>
+  </UragakiPopoverTrigger>
+  <UragakiPopoverContent className="w-80">
+    <p>Popover content here</p>
+  </UragakiPopoverContent>
+</UragakiPopover>
+```
+
+---
+
+### UragakiHoverCard
+Content shown on hover over a trigger.
+
+**Subcomponents:** UragakiHoverCardTrigger, UragakiHoverCardContent
+
+```tsx
+import { UragakiHoverCard, UragakiHoverCardTrigger, UragakiHoverCardContent } from "@yu-izumoto/uragaki-ui";
+
+<UragakiHoverCard>
+  <UragakiHoverCardTrigger asChild>
+    <a href="#">@username</a>
+  </UragakiHoverCardTrigger>
+  <UragakiHoverCardContent>
+    <p>User profile info here</p>
+  </UragakiHoverCardContent>
+</UragakiHoverCard>
+```
+
+---
+
+### UragakiTooltip
+Small tooltip on hover.
+
+**Subcomponents:** UragakiTooltipProvider, UragakiTooltipTrigger, UragakiTooltipContent
+
+```tsx
+import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiTooltipContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiTooltipProvider>
+  <UragakiTooltip>
+    <UragakiTooltipTrigger asChild>
+      <UragakiButton variant="outline">Hover me</UragakiButton>
+    </UragakiTooltipTrigger>
+    <UragakiTooltipContent>
+      <p>Tooltip text</p>
+    </UragakiTooltipContent>
+  </UragakiTooltip>
+</UragakiTooltipProvider>
+```
+
+---
+
+### UragakiDropdownMenu
+Dropdown menu triggered by a button.
+
+**Subcomponents:** UragakiDropdownMenuTrigger, UragakiDropdownMenuContent, UragakiDropdownMenuGroup, UragakiDropdownMenuItem, UragakiDropdownMenuLabel, UragakiDropdownMenuSeparator, UragakiDropdownMenuShortcut, UragakiDropdownMenuCheckboxItem, UragakiDropdownMenuRadioGroup, UragakiDropdownMenuRadioItem, UragakiDropdownMenuSub, UragakiDropdownMenuSubTrigger, UragakiDropdownMenuSubContent
+
+```tsx
+import {
+  UragakiDropdownMenu, UragakiDropdownMenuTrigger, UragakiDropdownMenuContent,
+  UragakiDropdownMenuItem, UragakiDropdownMenuLabel, UragakiDropdownMenuSeparator,
+  UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiDropdownMenu>
+  <UragakiDropdownMenuTrigger asChild>
+    <UragakiButton variant="outline">Menu</UragakiButton>
+  </UragakiDropdownMenuTrigger>
+  <UragakiDropdownMenuContent>
+    <UragakiDropdownMenuLabel>Actions</UragakiDropdownMenuLabel>
+    <UragakiDropdownMenuSeparator />
+    <UragakiDropdownMenuItem>Edit</UragakiDropdownMenuItem>
+    <UragakiDropdownMenuItem>Duplicate</UragakiDropdownMenuItem>
+    <UragakiDropdownMenuSeparator />
+    <UragakiDropdownMenuItem>Delete</UragakiDropdownMenuItem>
+  </UragakiDropdownMenuContent>
+</UragakiDropdownMenu>
+```
+
+---
+
+### UragakiContextMenu
+Right-click context menu.
+
+**Subcomponents:** UragakiContextMenuTrigger, UragakiContextMenuContent, UragakiContextMenuGroup, UragakiContextMenuItem, UragakiContextMenuLabel, UragakiContextMenuSeparator, UragakiContextMenuShortcut, UragakiContextMenuCheckboxItem, UragakiContextMenuRadioGroup, UragakiContextMenuRadioItem, UragakiContextMenuSub, UragakiContextMenuSubTrigger, UragakiContextMenuSubContent
+
+```tsx
+import {
+  UragakiContextMenu, UragakiContextMenuTrigger, UragakiContextMenuContent,
+  UragakiContextMenuItem
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiContextMenu>
+  <UragakiContextMenuTrigger className="p-8 border border-dashed">
+    Right click here
+  </UragakiContextMenuTrigger>
+  <UragakiContextMenuContent>
+    <UragakiContextMenuItem>Copy</UragakiContextMenuItem>
+    <UragakiContextMenuItem>Paste</UragakiContextMenuItem>
+    <UragakiContextMenuItem>Delete</UragakiContextMenuItem>
+  </UragakiContextMenuContent>
+</UragakiContextMenu>
+```
+
+---
+
+### UragakiMenubar
+Horizontal menu bar (like desktop app menus).
+
+**Subcomponents:** UragakiMenubarMenu, UragakiMenubarTrigger, UragakiMenubarContent, UragakiMenubarItem, UragakiMenubarSeparator, UragakiMenubarLabel, UragakiMenubarCheckboxItem, UragakiMenubarRadioGroup, UragakiMenubarRadioItem, UragakiMenubarGroup, UragakiMenubarSub, UragakiMenubarSubContent, UragakiMenubarSubTrigger, UragakiMenubarShortcut
+
+```tsx
+import {
+  UragakiMenubar, UragakiMenubarMenu, UragakiMenubarTrigger,
+  UragakiMenubarContent, UragakiMenubarItem, UragakiMenubarSeparator
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiMenubar>
+  <UragakiMenubarMenu>
+    <UragakiMenubarTrigger>File</UragakiMenubarTrigger>
+    <UragakiMenubarContent>
+      <UragakiMenubarItem>New</UragakiMenubarItem>
+      <UragakiMenubarItem>Open</UragakiMenubarItem>
+      <UragakiMenubarSeparator />
+      <UragakiMenubarItem>Save</UragakiMenubarItem>
+    </UragakiMenubarContent>
+  </UragakiMenubarMenu>
+</UragakiMenubar>
+```
+
+---
+
+### UragakiAvatar
+Circular avatar with ellipse-shaped rough.js border.
+
+**Subcomponents:** UragakiAvatarImage, UragakiAvatarFallback
+
+```tsx
+import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "@yu-izumoto/uragaki-ui";
+
+<UragakiAvatar>
+  <UragakiAvatarImage src="https://example.com/avatar.jpg" alt="User" />
+  <UragakiAvatarFallback>YI</UragakiAvatarFallback>
+</UragakiAvatar>
+```
+
+---
+
+### UragakiProgress
+Progress bar with rough.js border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| value | number | 0 | Progress percentage (0-100) |
+| roughness | number | 2.6 | Border roughness |
+
+```tsx
+import { UragakiProgress } from "@yu-izumoto/uragaki-ui";
+
+<UragakiProgress value={60} />
+```
+
+---
+
+### UragakiSkeleton
+Loading placeholder with sketchy border.
+
+```tsx
+import { UragakiSkeleton } from "@yu-izumoto/uragaki-ui";
+
+<div className="space-y-2">
+  <UragakiSkeleton className="h-4 w-[250px]" />
+  <UragakiSkeleton className="h-4 w-[200px]" />
+  <UragakiSkeleton className="h-12 w-12 rounded-full" />
+</div>
+```
+
+---
+
+### UragakiSeparator
+Hand-drawn horizontal or vertical line.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| orientation | "horizontal" \| "vertical" | "horizontal" | Line direction |
+| roughness | number | 2.6 | Line roughness |
+
+```tsx
+import { UragakiSeparator } from "@yu-izumoto/uragaki-ui";
+
+<UragakiSeparator />
+<UragakiSeparator orientation="vertical" className="h-8" />
+```
+
+---
+
+### UragakiTable
+Data table with rough.js border wrapper.
+
+**Subcomponents:** UragakiTableHeader, UragakiTableBody, UragakiTableFooter, UragakiTableHead, UragakiTableRow, UragakiTableCell, UragakiTableCaption
+
+```tsx
+import {
+  UragakiTable, UragakiTableHeader, UragakiTableBody,
+  UragakiTableRow, UragakiTableHead, UragakiTableCell
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiTable>
+  <UragakiTableHeader>
+    <UragakiTableRow>
+      <UragakiTableHead>Name</UragakiTableHead>
+      <UragakiTableHead>Email</UragakiTableHead>
+    </UragakiTableRow>
+  </UragakiTableHeader>
+  <UragakiTableBody>
+    <UragakiTableRow>
+      <UragakiTableCell>Alice</UragakiTableCell>
+      <UragakiTableCell>alice@example.com</UragakiTableCell>
+    </UragakiTableRow>
+  </UragakiTableBody>
+</UragakiTable>
+```
+
+---
+
+### UragakiCalendar
+Date picker calendar with rough.js border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| selected | Date | - | Selected date |
+| onSelect | (date: Date) => void | - | Selection handler |
+| roughness | number | 2.6 | Border roughness |
+| + all react-day-picker DayPicker props | | | |
+
+```tsx
+import { UragakiCalendar } from "@yu-izumoto/uragaki-ui";
+
+const [date, setDate] = useState<Date | undefined>();
+<UragakiCalendar mode="single" selected={date} onSelect={setDate} />
+```
+
+---
+
+### UragakiCollapsible
+Expandable/collapsible content section.
+
+**Subcomponents:** UragakiCollapsibleTrigger, UragakiCollapsibleContent
+
+```tsx
+import { UragakiCollapsible, UragakiCollapsibleTrigger, UragakiCollapsibleContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiCollapsible>
+  <UragakiCollapsibleTrigger asChild>
+    <UragakiButton variant="ghost">Toggle</UragakiButton>
+  </UragakiCollapsibleTrigger>
+  <UragakiCollapsibleContent>
+    <p>Collapsible content here</p>
+  </UragakiCollapsibleContent>
+</UragakiCollapsible>
+```
+
+---
+
+### UragakiAspectRatio
+Maintains aspect ratio with rough.js border.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| ratio | number | 16/9 | Width/height ratio |
+
+```tsx
+import { UragakiAspectRatio } from "@yu-izumoto/uragaki-ui";
+
+<UragakiAspectRatio ratio={16 / 9}>
+  <img src="image.jpg" alt="Photo" className="object-cover w-full h-full" />
+</UragakiAspectRatio>
+```
+
+---
+
+### UragakiScrollArea
+Scrollable area with rough.js border.
+
+**Subcomponents:** UragakiScrollBar
+
+```tsx
+import { UragakiScrollArea } from "@yu-izumoto/uragaki-ui";
+
+<UragakiScrollArea className="h-[200px] w-[300px]">
+  <div className="p-4">
+    {/* Long content here */}
+  </div>
+</UragakiScrollArea>
+```
+
+---
+
+### UragakiResizablePanelGroup
+Resizable panel layout with rough.js border.
+
+**Subcomponents:** UragakiResizablePanel, UragakiResizableHandle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| direction | "horizontal" \| "vertical" | required | Panel layout direction |
+
+```tsx
+import { UragakiResizablePanelGroup, UragakiResizablePanel, UragakiResizableHandle } from "@yu-izumoto/uragaki-ui";
+
+<UragakiResizablePanelGroup direction="horizontal">
+  <UragakiResizablePanel defaultSize={50}>Left panel</UragakiResizablePanel>
+  <UragakiResizableHandle />
+  <UragakiResizablePanel defaultSize={50}>Right panel</UragakiResizablePanel>
+</UragakiResizablePanelGroup>
+```
+
+---
+
+### UragakiForm
+Form components with react-hook-form integration.
+
+**Subcomponents:** UragakiFormField, UragakiFormItem, UragakiFormLabel, UragakiFormControl, UragakiFormDescription, UragakiFormMessage
+
+```tsx
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  UragakiForm, UragakiFormField, UragakiFormItem,
+  UragakiFormLabel, UragakiFormControl, UragakiFormMessage,
+  UragakiInput, UragakiButton
+} from "@yu-izumoto/uragaki-ui";
+
+const schema = z.object({ name: z.string().min(1) });
+
+function MyForm() {
+  const form = useForm({ resolver: zodResolver(schema) });
+
+  return (
+    <UragakiForm {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <UragakiFormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <UragakiFormItem>
+              <UragakiFormLabel>Name</UragakiFormLabel>
+              <UragakiFormControl>
+                <UragakiInput {...field} />
+              </UragakiFormControl>
+              <UragakiFormMessage />
+            </UragakiFormItem>
+          )}
+        />
+        <UragakiButton type="submit">Submit</UragakiButton>
+      </form>
+    </UragakiForm>
+  );
+}
+```
+
+---
+
+### UragakiInputOTP
+One-time password input with sketchy slots.
+
+**Subcomponents:** UragakiInputOTPGroup, UragakiInputOTPSlot, UragakiInputOTPSeparator
+
+```tsx
+import { UragakiInputOTP, UragakiInputOTPGroup, UragakiInputOTPSlot } from "@yu-izumoto/uragaki-ui";
+
+<UragakiInputOTP maxLength={6}>
+  <UragakiInputOTPGroup>
+    <UragakiInputOTPSlot index={0} />
+    <UragakiInputOTPSlot index={1} />
+    <UragakiInputOTPSlot index={2} />
+  </UragakiInputOTPGroup>
+  <UragakiInputOTPGroup>
+    <UragakiInputOTPSlot index={3} />
+    <UragakiInputOTPSlot index={4} />
+    <UragakiInputOTPSlot index={5} />
+  </UragakiInputOTPGroup>
+</UragakiInputOTP>
+```
+
+---
+
+### UragakiSonner
+Toast notification system (wraps Sonner).
+
+```tsx
+import { UragakiSonner } from "@yu-izumoto/uragaki-ui";
+import { toast } from "sonner";
+
+// Add to layout
+<UragakiSonner />
+
+// Trigger toasts
+toast("Event created");
+toast.success("Success!");
+toast.error("Something went wrong");
+```
+
+---
+
+### UragakiCarousel
+Image/content carousel (uses embla-carousel-react).
+
+**Subcomponents:** UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext
+
+```tsx
+import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext } from "@yu-izumoto/uragaki-ui";
+
+<UragakiCarousel>
+  <UragakiCarouselContent>
+    <UragakiCarouselItem>Slide 1</UragakiCarouselItem>
+    <UragakiCarouselItem>Slide 2</UragakiCarouselItem>
+    <UragakiCarouselItem>Slide 3</UragakiCarouselItem>
+  </UragakiCarouselContent>
+  <UragakiCarouselPrevious />
+  <UragakiCarouselNext />
+</UragakiCarousel>
+```
+
+---
+
+### UragakiCommand
+Command palette / search interface (uses cmdk).
+
+**Subcomponents:** UragakiCommandDialog, UragakiCommandInput, UragakiCommandList, UragakiCommandEmpty, UragakiCommandGroup, UragakiCommandItem, UragakiCommandShortcut, UragakiCommandSeparator
+
+```tsx
+import {
+  UragakiCommand, UragakiCommandInput, UragakiCommandList,
+  UragakiCommandEmpty, UragakiCommandGroup, UragakiCommandItem
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiCommand>
+  <UragakiCommandInput placeholder="Search..." />
+  <UragakiCommandList>
+    <UragakiCommandEmpty>No results found.</UragakiCommandEmpty>
+    <UragakiCommandGroup heading="Actions">
+      <UragakiCommandItem>New File</UragakiCommandItem>
+      <UragakiCommandItem>Open Settings</UragakiCommandItem>
+    </UragakiCommandGroup>
+  </UragakiCommandList>
+</UragakiCommand>
+```
+
+---
+
+### UragakiNavigationMenu
+Desktop navigation menu with dropdowns.
+
+**Subcomponents:** UragakiNavigationMenuList, UragakiNavigationMenuItem, UragakiNavigationMenuContent, UragakiNavigationMenuTrigger, UragakiNavigationMenuLink, UragakiNavigationMenuIndicator, UragakiNavigationMenuViewport
+
+```tsx
+import {
+  UragakiNavigationMenu, UragakiNavigationMenuList, UragakiNavigationMenuItem,
+  UragakiNavigationMenuTrigger, UragakiNavigationMenuContent, UragakiNavigationMenuLink
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiNavigationMenu>
+  <UragakiNavigationMenuList>
+    <UragakiNavigationMenuItem>
+      <UragakiNavigationMenuTrigger>Getting Started</UragakiNavigationMenuTrigger>
+      <UragakiNavigationMenuContent>
+        <UragakiNavigationMenuLink href="/docs">Documentation</UragakiNavigationMenuLink>
+      </UragakiNavigationMenuContent>
+    </UragakiNavigationMenuItem>
+  </UragakiNavigationMenuList>
+</UragakiNavigationMenu>
+```
+
+---
+
+### UragakiBreadcrumb
+Breadcrumb navigation.
+
+**Subcomponents:** UragakiBreadcrumbList, UragakiBreadcrumbItem, UragakiBreadcrumbLink, UragakiBreadcrumbPage, UragakiBreadcrumbSeparator, UragakiBreadcrumbEllipsis
+
+```tsx
+import {
+  UragakiBreadcrumb, UragakiBreadcrumbList, UragakiBreadcrumbItem,
+  UragakiBreadcrumbLink, UragakiBreadcrumbSeparator, UragakiBreadcrumbPage
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiBreadcrumb>
+  <UragakiBreadcrumbList>
+    <UragakiBreadcrumbItem>
+      <UragakiBreadcrumbLink href="/">Home</UragakiBreadcrumbLink>
+    </UragakiBreadcrumbItem>
+    <UragakiBreadcrumbSeparator />
+    <UragakiBreadcrumbItem>
+      <UragakiBreadcrumbPage>Current Page</UragakiBreadcrumbPage>
+    </UragakiBreadcrumbItem>
+  </UragakiBreadcrumbList>
+</UragakiBreadcrumb>
+```
+
+---
+
+### UragakiPagination
+Page navigation.
+
+**Subcomponents:** UragakiPaginationContent, UragakiPaginationItem, UragakiPaginationLink, UragakiPaginationPrevious, UragakiPaginationNext, UragakiPaginationEllipsis
+
+```tsx
+import {
+  UragakiPagination, UragakiPaginationContent, UragakiPaginationItem,
+  UragakiPaginationLink, UragakiPaginationPrevious, UragakiPaginationNext
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiPagination>
+  <UragakiPaginationContent>
+    <UragakiPaginationItem><UragakiPaginationPrevious href="#" /></UragakiPaginationItem>
+    <UragakiPaginationItem><UragakiPaginationLink href="#">1</UragakiPaginationLink></UragakiPaginationItem>
+    <UragakiPaginationItem><UragakiPaginationLink href="#" isActive>2</UragakiPaginationLink></UragakiPaginationItem>
+    <UragakiPaginationItem><UragakiPaginationLink href="#">3</UragakiPaginationLink></UragakiPaginationItem>
+    <UragakiPaginationItem><UragakiPaginationNext href="#" /></UragakiPaginationItem>
+  </UragakiPaginationContent>
+</UragakiPagination>
+```
+
+---
+
+### UragakiSidebar
+Full sidebar layout system.
+
+**Subcomponents:** UragakiSidebarProvider, UragakiSidebarHeader, UragakiSidebarContent, UragakiSidebarFooter, UragakiSidebarGroup, UragakiSidebarGroupLabel, UragakiSidebarGroupAction, UragakiSidebarGroupContent, UragakiSidebarMenu, UragakiSidebarMenuItem, UragakiSidebarMenuButton, UragakiSidebarMenuAction, UragakiSidebarMenuBadge, UragakiSidebarMenuSkeleton, UragakiSidebarMenuSub, UragakiSidebarMenuSubItem, UragakiSidebarMenuSubButton, UragakiSidebarInput, UragakiSidebarInset, UragakiSidebarRail, UragakiSidebarSeparator, UragakiSidebarTrigger
+
+**Hook:** useUragakiSidebar()
+
+```tsx
+import {
+  UragakiSidebarProvider, UragakiSidebar, UragakiSidebarHeader,
+  UragakiSidebarContent, UragakiSidebarGroup, UragakiSidebarGroupLabel,
+  UragakiSidebarGroupContent, UragakiSidebarMenu, UragakiSidebarMenuItem,
+  UragakiSidebarMenuButton, UragakiSidebarInset, UragakiSidebarTrigger
+} from "@yu-izumoto/uragaki-ui";
+
+<UragakiSidebarProvider>
+  <UragakiSidebar>
+    <UragakiSidebarHeader>
+      <h2>App Name</h2>
+    </UragakiSidebarHeader>
+    <UragakiSidebarContent>
+      <UragakiSidebarGroup>
+        <UragakiSidebarGroupLabel>Menu</UragakiSidebarGroupLabel>
+        <UragakiSidebarGroupContent>
+          <UragakiSidebarMenu>
+            <UragakiSidebarMenuItem>
+              <UragakiSidebarMenuButton>Dashboard</UragakiSidebarMenuButton>
+            </UragakiSidebarMenuItem>
+          </UragakiSidebarMenu>
+        </UragakiSidebarGroupContent>
+      </UragakiSidebarGroup>
+    </UragakiSidebarContent>
+  </UragakiSidebar>
+  <UragakiSidebarInset>
+    <header><UragakiSidebarTrigger /></header>
+    <main>Page content</main>
+  </UragakiSidebarInset>
+</UragakiSidebarProvider>
+```
+
+---
+
+### UragakiChartContainer
+Chart wrapper for recharts with sketchy styling.
+
+**Subcomponents:** UragakiChartTooltip, UragakiChartTooltipContent, UragakiChartLegend, UragakiChartLegendContent, UragakiChartStyle
+
+**Type:** ChartConfig
+
+```tsx
+import { UragakiChartContainer, UragakiChartTooltip, UragakiChartTooltipContent, type ChartConfig } from "@yu-izumoto/uragaki-ui";
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
+
+const chartConfig: ChartConfig = {
+  sales: { label: "Sales", color: "oklch(0.45 0.15 250)" },
+};
+
+<UragakiChartContainer config={chartConfig} className="h-[300px]">
+  <BarChart data={data}>
+    <XAxis dataKey="month" />
+    <YAxis />
+    <UragakiChartTooltip content={<UragakiChartTooltipContent />} />
+    <Bar dataKey="sales" fill="var(--color-sales)" />
+  </BarChart>
+</UragakiChartContainer>
+```
+
+---
+
+## Patterns & Best Practices
+
+### Naming Convention
+All components use the `Uragaki` prefix. The API mirrors shadcn/ui exactly, so if you know shadcn/ui, just add the prefix.
+
+### Roughness Control
+Lower roughness = cleaner lines. Higher roughness = more sketchy.
+- `roughness={1}` - Subtle hand-drawn effect
+- `roughness={2.6}` - Default sketchy look
+- `roughness={5}` - Very rough, chaotic look
+
+### Seed for Consistent Rendering
+Without a seed, borders re-randomize on re-render. Use a fixed seed for stable UI:
+```tsx
+<UragakiCard seed={42}>Stable borders</UragakiCard>
+```
+
+### Dark Mode
+Wrap your app with ThemeProvider. All components auto-adapt.
+```tsx
+const { setTheme } = useTheme();
+setTheme("dark"); // or "light" or "system"
+```
+
+### Paper Background
+Add the paper texture to your page:
+```tsx
+<div className="uragaki-paper min-h-screen">
+  {/* your app */}
+</div>
+```
+
+### Combining with Tailwind
+All components accept className for Tailwind utility classes:
+```tsx
+<UragakiCard className="max-w-md mx-auto">
+  <UragakiCardContent className="space-y-4 p-6">
+    {/* content */}
+  </UragakiCardContent>
+</UragakiCard>
+```

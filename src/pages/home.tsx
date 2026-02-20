@@ -71,6 +71,9 @@ export function HomePage() {
           <UragakiButton variant="outline" asChild>
             <a href={`${import.meta.env.BASE_URL}storybook/`}>Storybook</a>
           </UragakiButton>
+          <UragakiButton variant="outline" asChild>
+            <Link to="/showcase/kanban">Kanban Demo</Link>
+          </UragakiButton>
         </div>
       </div>
 

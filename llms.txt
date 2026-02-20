@@ -1,0 +1,177 @@
+# Uragaki UI
+
+> Hand-drawn, sketchy UI component library built on shadcn/ui + rough.js for React.
+> Paper-prototyping aesthetic for wireframes, MVP demos, and creative interfaces.
+
+## Install
+
+```bash
+npm install @yu-izumoto/uragaki-ui roughjs
+```
+
+## Setup
+
+```tsx
+// Import styles (required)
+import "@yu-izumoto/uragaki-ui/styles.css";
+
+// Wrap app with ThemeProvider for dark/light mode
+import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system">
+      {/* your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Peer Dependencies
+
+- react >= 18
+- react-dom >= 18
+- tailwindcss >= 4
+- roughjs ^4.6.0
+- class-variance-authority ^0.7.0
+- clsx ^2.0.0
+- tailwind-merge ^3.0.0
+- radix-ui ^1.0.0
+- lucide-react >= 0.300.0 (optional)
+
+## Architecture
+
+Each Uragaki component wraps a shadcn/ui (Radix UI) component with a rough.js SVG overlay to create hand-drawn borders. The SVG overlay uses `pointer-events: none` so interactivity is fully preserved. All components support dark mode via ThemeProvider.
+
+Common props across most components:
+- `roughness?: number` (default: 2.6) - How rough/sketchy the borders look
+- `seed?: number` - Fixed seed for consistent rendering (prevents flicker)
+- All standard HTML/React props from the underlying component
+
+## Components
+
+### Layout
+- UragakiCard (+ CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction)
+- UragakiAccordion (+ AccordionItem, AccordionTrigger, AccordionContent)
+- UragakiTabs (+ TabsList, TabsTrigger, TabsContent)
+- UragakiCollapsible (+ CollapsibleTrigger, CollapsibleContent)
+- UragakiResizablePanelGroup (+ ResizablePanel, ResizableHandle)
+- UragakiScrollArea (+ ScrollBar)
+- UragakiAspectRatio
+- UragakiSeparator
+- UragakiSkeleton
+- UragakiTable (+ TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption)
+
+### Input
+- UragakiButton - variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
+- UragakiInput - borderStyle: "underline" | "box"
+- UragakiTextarea
+- UragakiCheckbox
+- UragakiRadioGroup (+ RadioGroupItem)
+- UragakiSelect (+ SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup, SelectLabel)
+- UragakiSlider
+- UragakiSwitch
+- UragakiToggle
+- UragakiToggleGroup (+ ToggleGroupItem)
+- UragakiCalendar
+- UragakiInputOTP (+ InputOTPGroup, InputOTPSlot, InputOTPSeparator)
+- UragakiForm (+ FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage)
+- UragakiLabel
+
+### Overlay
+- UragakiDialog (+ DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription)
+- UragakiAlertDialog (+ AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel)
+- UragakiSheet (+ SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose)
+- UragakiDrawer (+ DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription)
+- UragakiPopover (+ PopoverTrigger, PopoverContent)
+- UragakiHoverCard (+ HoverCardTrigger, HoverCardContent)
+- UragakiTooltip (+ TooltipProvider, TooltipTrigger, TooltipContent)
+- UragakiContextMenu (+ ContextMenuTrigger, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuCheckboxItem, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent)
+
+### Display
+- UragakiBadge - variant: "default" | "destructive" | "secondary" | "outline"
+- UragakiAlert (+ AlertTitle, AlertDescription) - variant: "default" | "destructive"
+- UragakiAvatar (+ AvatarImage, AvatarFallback)
+- UragakiProgress
+- UragakiSonner (toast notifications)
+
+### Navigation
+- UragakiBreadcrumb (+ BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis)
+- UragakiDropdownMenu (+ DropdownMenuTrigger, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent)
+- UragakiMenubar (+ MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarLabel, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, MenubarGroup, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarShortcut)
+- UragakiNavigationMenu (+ NavigationMenuList, NavigationMenuItem, NavigationMenuContent, NavigationMenuTrigger, NavigationMenuLink, NavigationMenuIndicator, NavigationMenuViewport)
+- UragakiPagination (+ PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis)
+- UragakiSidebar (+ SidebarProvider, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarGroupAction, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuAction, SidebarMenuBadge, SidebarMenuSkeleton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton, SidebarInput, SidebarInset, SidebarRail, SidebarSeparator, SidebarTrigger)
+- UragakiCommand (+ CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut, CommandSeparator)
+- UragakiCarousel (+ CarouselContent, CarouselItem, CarouselPrevious, CarouselNext)
+
+### Data Visualization
+- UragakiChartContainer (+ ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle)
+
+### Utilities
+- ThemeProvider - Dark/light mode management
+- useTheme - Access current theme
+- UragakiBorder - Core rough.js border wrapper (shape: "rectangle" | "ellipse")
+
+## Quick Examples
+
+### Button
+```tsx
+import { UragakiButton } from "@yu-izumoto/uragaki-ui";
+<UragakiButton variant="default">Click me</UragakiButton>
+<UragakiButton variant="outline">Outline</UragakiButton>
+<UragakiButton variant="destructive">Delete</UragakiButton>
+```
+
+### Card with Form
+```tsx
+import { UragakiCard, UragakiCardHeader, UragakiCardTitle, UragakiCardContent, UragakiCardFooter, UragakiInput, UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiCard>
+  <UragakiCardHeader>
+    <UragakiCardTitle>Sign Up</UragakiCardTitle>
+  </UragakiCardHeader>
+  <UragakiCardContent className="space-y-4">
+    <UragakiInput placeholder="Email" borderStyle="underline" />
+    <UragakiInput placeholder="Password" type="password" borderStyle="underline" />
+  </UragakiCardContent>
+  <UragakiCardFooter>
+    <UragakiButton>Submit</UragakiButton>
+  </UragakiCardFooter>
+</UragakiCard>
+```
+
+### Dialog
+```tsx
+import { UragakiDialog, UragakiDialogTrigger, UragakiDialogContent, UragakiDialogHeader, UragakiDialogTitle, UragakiDialogDescription, UragakiButton } from "@yu-izumoto/uragaki-ui";
+
+<UragakiDialog>
+  <UragakiDialogTrigger asChild>
+    <UragakiButton>Open Dialog</UragakiButton>
+  </UragakiDialogTrigger>
+  <UragakiDialogContent>
+    <UragakiDialogHeader>
+      <UragakiDialogTitle>Title</UragakiDialogTitle>
+      <UragakiDialogDescription>Description here</UragakiDialogDescription>
+    </UragakiDialogHeader>
+  </UragakiDialogContent>
+</UragakiDialog>
+```
+
+### Tabs
+```tsx
+import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "@yu-izumoto/uragaki-ui";
+
+<UragakiTabs defaultValue="tab1">
+  <UragakiTabsList>
+    <UragakiTabsTrigger value="tab1">Tab 1</UragakiTabsTrigger>
+    <UragakiTabsTrigger value="tab2">Tab 2</UragakiTabsTrigger>
+  </UragakiTabsList>
+  <UragakiTabsContent value="tab1">Content 1</UragakiTabsContent>
+  <UragakiTabsContent value="tab2">Content 2</UragakiTabsContent>
+</UragakiTabs>
+```
+
+## Detailed Docs
+
+- Full API reference: llms-full.txt

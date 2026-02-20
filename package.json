@@ -15,7 +15,9 @@
     "./styles.css": "./dist/uragaki-styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "llms.txt",
+    "llms-full.txt"
   ],
   "keywords": [
     "ui",

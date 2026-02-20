@@ -50,11 +50,16 @@ import { ResizablePage } from "@/pages/components/resizable-page";
 import { ScrollAreaPage } from "@/pages/components/scroll-area-page";
 import { SidebarPage } from "@/pages/components/sidebar-page";
 import { SonnerPage } from "@/pages/components/sonner-page";
+import { KanbanPage } from "@/pages/showcase/kanban";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <HomePage />,
+  },
+  {
+    path: "/showcase/kanban",
+    element: <KanbanPage />,
   },
   {
     path: "/docs",

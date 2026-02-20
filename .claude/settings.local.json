@@ -34,7 +34,9 @@
       "Bash(pnpm deploy:pages:*)",
       "WebFetch(domain:www.figma.com)",
       "Bash(curl:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(test:*)",
+      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline -15)"
     ]
   }
 }
