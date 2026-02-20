@@ -31,7 +31,9 @@
       "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline -10)",
       "Bash(git -C /Users/yukiizumoto/Desktop/shadcn worktree list)",
       "Bash(chmod:*)",
-      "Bash(pnpm deploy:pages:*)"
+      "Bash(pnpm deploy:pages:*)",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(curl:*)"
     ]
   }
 }

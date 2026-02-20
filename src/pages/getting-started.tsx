@@ -6,7 +6,7 @@ export function GettingStartedPage() {
           イントロダクション
         </h1>
         <p className="text-muted-foreground">
-          Uragaki UI は、shadcn/ui と rough.js をベースにした手書き風UIコンポーネントライブラリです。
+          uragaki-ui は、shadcn/ui と rough.js をベースにした手書き風UIコンポーネントライブラリです。
           プロトタイピング、ワイヤーフレーム作成、遊び心のあるアプリケーションに最適なスケッチスタイルのコンポーネントを提供します。
         </p>
       </div>

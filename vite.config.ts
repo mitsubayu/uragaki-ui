@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  base: "/yu-izumoto/Uragaki-UI/",
+  base: "/yu-izumoto/uragaki-ui/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -41,7 +41,7 @@ export function NavigationMenuPage() {
               <UragakiNavigationMenuContent>
                 <div className="p-4 w-[300px] space-y-2">
                   <h4 className="font-[var(--font-uragaki-heading)] font-semibold">
-                    Uragaki UI
+                    uragaki-ui
                   </h4>
                   <p className="text-sm text-muted-foreground">
                     手描きスタイルのUIコンポーネントライブラリです。

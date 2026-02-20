@@ -1,4 +1,4 @@
-# Uragaki-UI
+# uragaki-ui
 
 PoC開発専用のペーパープロトタイピングライクUI
 

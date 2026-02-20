@@ -28,7 +28,7 @@ export function DocsLayout() {
       <header className="border-b border-border/50 px-6 py-3 flex items-center justify-between bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <Link to="/" className="flex items-center gap-2">
           <span className="font-[var(--font-uragaki-heading)] text-xl font-bold">
-            Uragaki UI
+            uragaki-ui
           </span>
         </Link>
         <nav className="flex items-center gap-4 text-sm">

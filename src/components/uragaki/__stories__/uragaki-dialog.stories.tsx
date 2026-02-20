@@ -50,9 +50,9 @@ export const Information: Story = {
       </UragakiDialogTrigger>
       <UragakiDialogContent>
         <UragakiDialogHeader>
-          <UragakiDialogTitle>Uragaki UIについて</UragakiDialogTitle>
+          <UragakiDialogTitle>uragaki-uiについて</UragakiDialogTitle>
           <UragakiDialogDescription>
-            Uragaki UIは、shadcn/uiとrough.jsを組み合わせた手書き風UIコンポーネントライブラリです。
+            uragaki-uiは、shadcn/uiとrough.jsを組み合わせた手書き風UIコンポーネントライブラリです。
             プロトタイピングやワイヤーフレームの作成に最適です。
           </UragakiDialogDescription>
         </UragakiDialogHeader>

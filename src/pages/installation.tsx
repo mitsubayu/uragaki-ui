@@ -6,7 +6,7 @@ export function InstallationPage() {
           インストール
         </h1>
         <p className="text-muted-foreground">
-          プロジェクトに Uragaki UI を導入する手順を説明します。
+          プロジェクトに uragaki-ui を導入する手順を説明します。
         </p>
       </div>
 
