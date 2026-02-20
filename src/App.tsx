@@ -1,4 +1,5 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "@/components/uragaki/theme-provider";
 import { DocsLayout } from "@/components/docs/layout";
 import { HomePage } from "@/pages/home";
 import { GettingStartedPage } from "@/pages/getting-started";
@@ -30,7 +31,7 @@ import { TogglePage } from "@/pages/components/toggle-page";
 import { ToggleGroupPage } from "@/pages/components/toggle-group-page";
 import { TooltipPage } from "@/pages/components/tooltip-page";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <HomePage />,
@@ -72,5 +73,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider defaultTheme="system">
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
