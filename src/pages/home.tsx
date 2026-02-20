@@ -68,6 +68,9 @@ export function HomePage() {
           <UragakiButton variant="outline" asChild>
             <Link to="/docs/components/button">コンポーネント一覧</Link>
           </UragakiButton>
+          <UragakiButton variant="outline" asChild>
+            <a href={`${import.meta.env.BASE_URL}storybook/`}>Storybook</a>
+          </UragakiButton>
         </div>
       </div>
 
