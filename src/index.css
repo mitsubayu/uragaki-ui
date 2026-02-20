@@ -4,6 +4,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Sketchflow Print';
+  src: url('./assets/sketchflow-print.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
@@ -43,9 +51,9 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
-    --font-uragaki-body: 'Patrick Hand', 'Yusei Magic', cursive;
-    --font-uragaki-heading: 'Architects Daughter', 'Yusei Magic', cursive;
-    --font-uragaki-accent: 'Caveat', 'Hachi Maru Pop', cursive;
+    --font-uragaki-body: 'Sketchflow Print', 'Yusei Magic', cursive;
+    --font-uragaki-heading: 'Sketchflow Print', 'Yusei Magic', cursive;
+    --font-uragaki-accent: 'Sketchflow Print', 'Hachi Maru Pop', cursive;
 }
 
 :root {

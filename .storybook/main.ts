@@ -14,7 +14,7 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     if (process.env.NODE_ENV === "production") {
-      config.base = "/yu-izumoto/uragaki-ui/storybook/";
+      config.base = "/yu-izumoto/Uragaki-UI/storybook/";
     }
     return config;
   },

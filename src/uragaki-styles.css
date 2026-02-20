@@ -2,13 +2,21 @@
 /* Import this file in your project: import 'uragaki-ui/styles.css' */
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Hachi+Maru+Pop&family=Patrick+Hand&family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Yusei+Magic&display=swap');
+
+@font-face {
+  font-family: 'Sketchflow Print';
+  src: url('./assets/sketchflow-print.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Font variables */
 :root {
-  --font-uragaki-body: 'Patrick Hand', 'Yusei Magic', cursive;
-  --font-uragaki-heading: 'Architects Daughter', 'Yusei Magic', cursive;
-  --font-uragaki-accent: 'Caveat', 'Hachi Maru Pop', cursive;
+  --font-uragaki-body: 'Sketchflow Print', 'Yusei Magic', cursive;
+  --font-uragaki-heading: 'Sketchflow Print', 'Yusei Magic', cursive;
+  --font-uragaki-accent: 'Sketchflow Print', 'Hachi Maru Pop', cursive;
 }
 
 /* Light theme (default) */
