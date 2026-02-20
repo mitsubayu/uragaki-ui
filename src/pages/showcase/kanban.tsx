@@ -348,7 +348,7 @@ export function KanbanPage() {
         </div>
 
         {/* Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[calc(100vh-200px)]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {COLUMNS.map((column) => {
             const columnTasks = tasks
               .filter((t) => t.columnId === column.id)
@@ -360,12 +360,7 @@ export function KanbanPage() {
               <UragakiCard
                 key={column.id}
                 seed={column.id}
-                className={`transition-shadow flex flex-col md:overflow-hidden ${isDropTarget ? "ring-2 ring-primary/50 shadow-lg" : ""}`}
-                onDragOver={(e: React.DragEvent) =>
-                  handleDragOver(e, column.id)
-                }
-                onDragLeave={handleDragLeave}
-                onDrop={(e: React.DragEvent) => handleDrop(e, column.id)}
+                className={`transition-shadow ${isDropTarget ? "ring-2 ring-primary/50 shadow-lg" : ""}`}
               >
                 <UragakiCardHeader>
                   <div className="flex items-center justify-between">
@@ -387,8 +382,17 @@ export function KanbanPage() {
                   </div>
                 </UragakiCardHeader>
                 <UragakiSeparator />
-                <UragakiCardContent className="pt-4 md:flex-1 md:overflow-y-auto">
-                  <div className="space-y-3 min-h-[100px]">
+                <UragakiCardContent className="pt-4">
+                  <div
+                    className="space-y-3 min-h-[200px] rounded-md p-1 transition-colors"
+                    onDragOver={(e: React.DragEvent) =>
+                      handleDragOver(e, column.id)
+                    }
+                    onDragLeave={handleDragLeave}
+                    onDrop={(e: React.DragEvent) =>
+                      handleDrop(e, column.id)
+                    }
+                  >
                     {columnTasks.map((task) => (
                       <UragakiCard
                         key={task.id}
