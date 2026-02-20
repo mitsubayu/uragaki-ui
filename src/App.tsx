@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/uragaki/theme-provider";
 import { DocsLayout } from "@/components/docs/layout";
 import { HomePage } from "@/pages/home";
 import { GettingStartedPage } from "@/pages/getting-started";
+import { InstallationPage } from "@/pages/installation";
 import { AccordionPage } from "@/pages/components/accordion-page";
 import { AlertPage } from "@/pages/components/alert-page";
 import { AlertDialogPage } from "@/pages/components/alert-dialog-page";
@@ -60,6 +61,7 @@ const router = createHashRouter([
     element: <DocsLayout />,
     children: [
       { index: true, element: <GettingStartedPage /> },
+      { path: "installation", element: <InstallationPage /> },
       { path: "components/accordion", element: <AccordionPage /> },
       { path: "components/alert", element: <AlertPage /> },
       { path: "components/alert-dialog", element: <AlertDialogPage /> },

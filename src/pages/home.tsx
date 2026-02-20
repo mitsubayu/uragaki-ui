@@ -27,6 +27,9 @@ export function HomePage() {
             <Link to="/docs">はじめる</Link>
           </UragakiButton>
           <UragakiButton variant="outline" asChild>
+            <Link to="/docs/installation">インストール方法</Link>
+          </UragakiButton>
+          <UragakiButton variant="outline" asChild>
             <Link to="/docs/components/button">コンポーネント一覧</Link>
           </UragakiButton>
         </div>

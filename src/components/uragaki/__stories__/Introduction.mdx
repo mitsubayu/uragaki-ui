@@ -1,0 +1,98 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Uragaki UI
+
+PoC開発専用のペーパープロトタイピングライクUI
+
+shadcn/ui と rough.js をベースにした手書き風UIコンポーネントライブラリです。
+プロトタイピング、ワイヤーフレーム作成、遊び心のあるアプリケーションに最適なスケッチスタイルのコンポーネントを提供します。
+
+---
+
+## 事前準備
+
+GHE で公開されている KAG テンプレートを使えるようにNPMを設定する。
+
+1. GHE で `read:packages` 権限がついた **Personal Access Token** を取得
+2. `~/.npmrc` に以下を記述
+
+```
+//npm.github.kddi.com/:_authToken=<上記で取得したトークン>
+@kag:registry=https://npm.github.kddi.com
+```
+
+3. 依存パッケージをインストール
+
+```bash
+pnpm install
+```
+
+---
+
+## 使用方法
+
+```bash
+# 開発サーバー起動（ブラウザで確認しながらコンポーネント編集）
+pnpm dev
+
+# Storybook 起動（コンポーネントカタログを確認）
+pnpm storybook
+
+# ライブラリビルド（npm公開用）
+pnpm build:lib
+
+# ドキュメントサイト + Storybook をビルドして GitHub Pages にデプロイ
+pnpm deploy:pages
+
+# npm にパッケージを公開
+pnpm publish:npm <version>
+#   version: patch | minor | major | x.y.z
+```
+
+---
+
+## 特徴
+
+- **手書き風ボーダー** — rough.js の SVG レンダリングによるスケッチスタイル
+- **手書き風フォント** — Architects Daughter、Patrick Hand、Caveat
+- **紙テクスチャ背景** — グリッドパターン付き
+- **アクセシビリティ** — shadcn/ui（Radix UI）ベースの完全対応
+- **Tailwind CSS v4** によるスタイリング
+- **ダークモード対応**
+- **安定したシード値レンダリング** — 描画のちらつきを防止
+
+---
+
+## インストール（利用者向け）
+
+```bash
+npm install uragaki-ui
+```
+
+```tsx
+import { UragakiButton, UragakiCard } from "uragaki-ui";
+import "uragaki-ui/styles.css";
+```
+
+---
+
+## アーキテクチャ
+
+各 Uragaki コンポーネントは、対応する shadcn/ui コンポーネントを `UragakiBorder` オーバーレイでラップしています。
+UragakiBorder は rough.js を使って手書き風の SVG シェイプを `pointer-events: none` の絶対配置オーバーレイとして描画し、
+元のコンポーネントの操作性を完全に維持します。
+
+---
+
+## 技術スタック
+
+| 技術 | 用途 |
+|------|------|
+| React + TypeScript | UIフレームワーク |
+| Vite | ビルドツール |
+| Tailwind CSS v4 | スタイリング |
+| shadcn/ui (Radix UI) | ベースコンポーネント |
+| rough.js | 手書き風SVG描画 |
+| Storybook | コンポーネントカタログ |

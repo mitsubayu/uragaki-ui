@@ -26,7 +26,12 @@
       "Bash(git commit:*)",
       "Bash(node -e:*)",
       "Bash(npx vite build:*)",
-      "Bash(pnpm run build:lib:*)"
+      "Bash(pnpm run build:lib:*)",
+      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline)",
+      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline -10)",
+      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn worktree list)",
+      "Bash(chmod:*)",
+      "Bash(pnpm deploy:pages:*)"
     ]
   }
 }

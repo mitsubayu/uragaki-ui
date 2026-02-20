@@ -6,6 +6,7 @@ const navigation = [
     title: "はじめに",
     items: [
       { name: "イントロダクション", path: "/docs" },
+      { name: "インストール", path: "/docs/installation" },
     ],
   },
   {

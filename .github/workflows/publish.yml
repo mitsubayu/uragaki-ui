@@ -1,8 +1,9 @@
-name: Publish to npm
-
-on:
-  release:
-    types: [published]
+name: Publish to npm (CI - disabled on GHE)
+# GHE では Self-Hosted Runner が使えないため、ローカルから pnpm publish:npm <version> で実行
+# on:
+#   release:
+#     types: [published]
+on: workflow_dispatch
 
 permissions:
   contents: read

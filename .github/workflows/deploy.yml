@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+name: Deploy to GitHub Pages (CI - disabled on GHE)
+# GHE では Self-Hosted Runner が使えないため、ローカルから pnpm deploy:pages で実行
+# on:
+#   push:
+#     branches: [main]
+on: workflow_dispatch
 
 permissions:
   contents: read
