@@ -74,6 +74,45 @@ export function HomePage() {
         </div>
       </div>
 
+      {/* Why Sketchy UI */}
+      <div className="max-w-4xl mx-auto px-6 pb-20">
+        <h2 className="font-[var(--font-uragaki-heading)] text-3xl font-bold text-center mb-10">
+          なぜ手書き風？
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <UragakiCard>
+            <UragakiCardHeader>
+              <UragakiCardTitle>1. 本質に集中できる</UragakiCardTitle>
+            </UragakiCardHeader>
+            <UragakiCardContent>
+              <p className="text-sm text-muted-foreground">
+                プロトタイプが綺麗すぎると、色やフォントなど見た目の細部にフィードバックが集中してしまいます。手書き風にすることで、画面遷移や機能の流れといった本質的な部分に議論を向けられます。
+              </p>
+            </UragakiCardContent>
+          </UragakiCard>
+          <UragakiCard>
+            <UragakiCardHeader>
+              <UragakiCardTitle>2. 未完成を伝える</UragakiCardTitle>
+            </UragakiCardHeader>
+            <UragakiCardContent>
+              <p className="text-sm text-muted-foreground">
+                ラフなビジュアルが「これはまだドラフトです」というシグナルになります。関係者がより率直に、大きな方向転換も含めたフィードバックを出しやすくなります。
+              </p>
+            </UragakiCardContent>
+          </UragakiCard>
+          <UragakiCard>
+            <UragakiCardHeader>
+              <UragakiCardTitle>3. 変更をためらわない</UragakiCardTitle>
+            </UragakiCardHeader>
+            <UragakiCardContent>
+              <p className="text-sm text-muted-foreground">
+                完成度の高いデザインは「壊すのがもったいない」という心理を生みます。スケッチ風であれば、大胆な変更提案も気軽にでき、より自由な議論が可能になります。
+              </p>
+            </UragakiCardContent>
+          </UragakiCard>
+        </div>
+      </div>
+
       {/* Component Showcase */}
       <div className="max-w-5xl mx-auto px-6 pb-24">
         <h2 className="font-[var(--font-uragaki-heading)] text-3xl font-bold text-center mb-12">
