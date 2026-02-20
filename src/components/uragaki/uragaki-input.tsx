@@ -13,7 +13,7 @@ interface UragakiInputProps extends React.ComponentProps<"input"> {
 
 export function UragakiInput({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   borderStyle = "underline",
   ...props

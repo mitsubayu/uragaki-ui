@@ -10,7 +10,7 @@ interface UragakiSwitchProps extends React.ComponentProps<typeof Switch> {
 
 export function UragakiSwitch({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiSwitchProps) {

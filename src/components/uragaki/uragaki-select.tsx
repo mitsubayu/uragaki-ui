@@ -33,7 +33,7 @@ interface UragakiSelectTriggerProps
 export function UragakiSelectTrigger({
   className,
   children,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiSelectTriggerProps) {
@@ -104,7 +104,7 @@ interface UragakiSelectContentProps
 export function UragakiSelectContent({
   className,
   children,
-  roughness = 1.8,
+  roughness = 2.6,
   position = "popper",
   ...props
 }: UragakiSelectContentProps) {

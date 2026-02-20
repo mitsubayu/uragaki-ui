@@ -15,7 +15,7 @@ type UragakiAccordionProps = React.ComponentProps<typeof Accordion> & {
 
 export function UragakiAccordion({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiAccordionProps) {

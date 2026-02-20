@@ -19,7 +19,7 @@ interface UragakiCardProps extends React.ComponentProps<"div"> {
 export function UragakiCard({
   children,
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiCardProps) {

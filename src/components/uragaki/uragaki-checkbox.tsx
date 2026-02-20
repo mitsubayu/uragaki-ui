@@ -13,7 +13,7 @@ interface UragakiCheckboxProps
 
 export function UragakiCheckbox({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiCheckboxProps) {

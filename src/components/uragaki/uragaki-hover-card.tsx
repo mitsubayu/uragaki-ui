@@ -26,7 +26,7 @@ interface UragakiHoverCardContentProps
 
 export function UragakiHoverCardContent({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   children,
   ...props

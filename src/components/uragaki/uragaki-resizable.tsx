@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function UragakiResizablePanelGroup({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   children,
   ...props

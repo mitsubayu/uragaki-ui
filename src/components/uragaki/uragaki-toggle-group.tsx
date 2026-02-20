@@ -10,7 +10,7 @@ type UragakiToggleGroupProps = React.ComponentProps<typeof ToggleGroup> & {
 
 export function UragakiToggleGroup({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   ...props
 }: UragakiToggleGroupProps) {

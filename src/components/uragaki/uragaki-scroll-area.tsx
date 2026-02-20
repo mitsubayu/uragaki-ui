@@ -10,7 +10,7 @@ interface UragakiScrollAreaProps
 
 export function UragakiScrollArea({
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   children,
   ...props

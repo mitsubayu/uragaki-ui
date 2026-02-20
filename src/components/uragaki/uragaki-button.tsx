@@ -34,7 +34,7 @@ function getUragakiStyle(variant: string | null | undefined, colors: UragakiColo
 export function UragakiButton({
   children,
   className,
-  roughness = 1.8,
+  roughness = 2.6,
   seed,
   variant = "default",
   size,
