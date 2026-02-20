@@ -14,7 +14,7 @@ interface UragakiCollapsibleProps
 
 export function UragakiCollapsible({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   children,
   ...props

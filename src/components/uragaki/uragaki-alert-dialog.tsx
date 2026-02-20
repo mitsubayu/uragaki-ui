@@ -33,7 +33,7 @@ interface UragakiAlertDialogContentProps
 
 export function UragakiAlertDialogContent({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   children,
   ...props

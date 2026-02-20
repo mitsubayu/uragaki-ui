@@ -13,7 +13,7 @@ interface UragakiToggleProps
 
 export function UragakiToggle({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiToggleProps) {

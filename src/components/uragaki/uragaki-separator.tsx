@@ -12,7 +12,7 @@ interface UragakiSeparatorProps extends React.ComponentProps<"div"> {
 
 export function UragakiSeparator({
   orientation = "horizontal",
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   className,
   ...props

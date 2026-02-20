@@ -21,9 +21,9 @@ interface UragakiBorderProps {
 
 export function UragakiBorder({
   children,
-  roughness = 3.5,
-  bowing = 2.5,
-  strokeWidth = 2.5,
+  roughness = 1.8,
+  bowing = 1.2,
+  strokeWidth = 2,
   stroke = "currentColor",
   fill,
   fillStyle = "hachure",

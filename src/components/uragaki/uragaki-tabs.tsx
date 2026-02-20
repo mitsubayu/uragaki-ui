@@ -83,7 +83,7 @@ interface UragakiTabsTriggerProps
 
 export function UragakiTabsTrigger({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   ...props
 }: UragakiTabsTriggerProps) {
   const colors = useUragakiColors();

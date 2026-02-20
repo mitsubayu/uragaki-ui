@@ -41,7 +41,7 @@ interface UragakiDialogContentProps
 export function UragakiDialogContent({
   className,
   children,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiDialogContentProps) {

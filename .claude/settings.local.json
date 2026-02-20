@@ -33,7 +33,8 @@
       "Bash(chmod:*)",
       "Bash(pnpm deploy:pages:*)",
       "WebFetch(domain:www.figma.com)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(find:*)"
     ]
   }
 }

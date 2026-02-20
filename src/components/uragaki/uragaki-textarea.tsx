@@ -12,7 +12,7 @@ interface UragakiTextareaProps extends React.ComponentProps<"textarea"> {
 
 export function UragakiTextarea({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiTextareaProps) {

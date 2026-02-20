@@ -14,7 +14,7 @@ interface UragakiAvatarProps extends React.ComponentProps<typeof Avatar> {
 
 export function UragakiAvatar({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiAvatarProps) {

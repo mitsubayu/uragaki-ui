@@ -29,7 +29,7 @@ interface UragakiRadioGroupItemProps
 
 export function UragakiRadioGroupItem({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiRadioGroupItemProps) {

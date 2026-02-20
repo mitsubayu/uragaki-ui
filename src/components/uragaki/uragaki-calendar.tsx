@@ -12,7 +12,7 @@ type UragakiCalendarProps = React.ComponentProps<typeof DayPicker> & {
 
 export function UragakiCalendar({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiCalendarProps) {

@@ -12,7 +12,7 @@ interface UragakiAlertProps extends React.ComponentProps<"div"> {
 export function UragakiAlert({
   children,
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   variant,
   ...props

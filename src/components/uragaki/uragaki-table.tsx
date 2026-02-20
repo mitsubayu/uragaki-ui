@@ -19,7 +19,7 @@ interface UragakiTableProps extends React.ComponentProps<"table"> {
 
 export function UragakiTable({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiTableProps) {

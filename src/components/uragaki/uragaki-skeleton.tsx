@@ -10,7 +10,7 @@ interface UragakiSkeletonProps extends React.ComponentProps<"div"> {
 
 export function UragakiSkeleton({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiSkeletonProps) {

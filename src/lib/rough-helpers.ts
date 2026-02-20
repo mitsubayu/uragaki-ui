@@ -2,9 +2,9 @@ import rough from "roughjs";
 import type { Options } from "roughjs/bin/core";
 
 export const defaultUragakiOptions: Options = {
-  roughness: 3.5,
-  bowing: 2.5,
-  strokeWidth: 2.5,
+  roughness: 1.8,
+  bowing: 1.2,
+  strokeWidth: 2,
   fillStyle: "hachure",
   hachureAngle: -41,
   hachureGap: 5,

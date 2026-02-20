@@ -10,7 +10,7 @@ interface UragakiProgressProps extends React.ComponentProps<typeof Progress> {
 
 export function UragakiProgress({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   ...props
 }: UragakiProgressProps) {

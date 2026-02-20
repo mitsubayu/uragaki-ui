@@ -30,7 +30,7 @@ function getUragakiStyle(variant: string | null | undefined, colors: UragakiColo
 export function UragakiBadge({
   children,
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   variant = "default",
   asChild,

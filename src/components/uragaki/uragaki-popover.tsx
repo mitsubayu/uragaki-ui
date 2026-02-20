@@ -27,7 +27,7 @@ interface UragakiPopoverContentProps
 
 export function UragakiPopoverContent({
   className,
-  roughness = 3.5,
+  roughness = 1.8,
   seed,
   children,
   ...props
