@@ -3,6 +3,7 @@ import { Dialog as DialogPrimitive } from "radix-ui";
 import rough from "roughjs";
 import { clearSvg, defaultUragakiOptions } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 export function UragakiDialog(
   props: React.ComponentProps<typeof DialogPrimitive.Root>
@@ -44,6 +45,7 @@ export function UragakiDialogContent({
   seed,
   ...props
 }: UragakiDialogContentProps) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(seed ?? Math.floor(Math.random() * 2 ** 31));
@@ -70,11 +72,11 @@ export function UragakiDialogContent({
       ...defaultUragakiOptions,
       roughness,
       strokeWidth: 2,
-      stroke: "oklch(0.65 0.01 70)",
+      stroke: colors.border,
       seed: stableSeed.current,
     });
     svg.appendChild(node);
-  }, [dims, roughness]);
+  }, [dims, roughness, colors.border]);
 
   // Draw a rough X for close button
   const closeSvgRef = useRef<SVGSVGElement>(null);
@@ -87,18 +89,18 @@ export function UragakiDialogContent({
     const line1 = rc.line(3, 3, 13, 13, {
       roughness: 1,
       strokeWidth: 2,
-      stroke: "oklch(0.55 0.01 60)",
+      stroke: colors.muted,
       seed: stableSeed.current + 100,
     });
     const line2 = rc.line(13, 3, 3, 13, {
       roughness: 1,
       strokeWidth: 2,
-      stroke: "oklch(0.55 0.01 60)",
+      stroke: colors.muted,
       seed: stableSeed.current + 200,
     });
     svg.appendChild(line1);
     svg.appendChild(line2);
-  }, []);
+  }, [colors.muted]);
 
   return (
     <DialogPrimitive.Portal>

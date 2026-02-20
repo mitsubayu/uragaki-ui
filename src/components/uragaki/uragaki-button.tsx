@@ -2,6 +2,7 @@ import type { VariantProps } from "class-variance-authority";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { UragakiBorder } from "./uragaki-border";
 import { cn } from "@/lib/utils";
+import { useUragakiColors, type UragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiButtonProps
   extends React.ComponentProps<"button">,
@@ -11,22 +12,22 @@ interface UragakiButtonProps
   seed?: number;
 }
 
-function getUragakiStyle(variant: string | null | undefined) {
+function getUragakiStyle(variant: string | null | undefined, colors: UragakiColors) {
   switch (variant) {
     case "default":
-      return { stroke: "oklch(0.45 0.15 250)", fill: "oklch(0.45 0.15 250)", fillStyle: "solid" as const };
+      return { stroke: colors.primary, fill: colors.primary, fillStyle: "solid" as const };
     case "destructive":
-      return { stroke: "oklch(0.55 0.2 25)", fill: "oklch(0.55 0.2 25)", fillStyle: "solid" as const };
+      return { stroke: colors.destructive, fill: colors.destructive, fillStyle: "solid" as const };
     case "outline":
-      return { stroke: "oklch(0.65 0.01 70)", fill: undefined, fillStyle: "hachure" as const };
+      return { stroke: colors.border, fill: undefined, fillStyle: "hachure" as const };
     case "secondary":
-      return { stroke: "oklch(0.65 0.01 70)", fill: "oklch(0.88 0.01 80)", fillStyle: "solid" as const };
+      return { stroke: colors.secondaryBorder, fill: colors.secondaryFill, fillStyle: "solid" as const };
     case "ghost":
       return { stroke: "transparent", fill: undefined, fillStyle: "hachure" as const };
     case "link":
       return { stroke: "transparent", fill: undefined, fillStyle: "hachure" as const };
     default:
-      return { stroke: "oklch(0.65 0.01 70)", fill: undefined, fillStyle: "hachure" as const };
+      return { stroke: colors.border, fill: undefined, fillStyle: "hachure" as const };
   }
 }
 
@@ -40,7 +41,8 @@ export function UragakiButton({
   asChild,
   ...props
 }: UragakiButtonProps) {
-  const style = getUragakiStyle(variant);
+  const colors = useUragakiColors();
+  const style = getUragakiStyle(variant, colors);
 
   return (
     <UragakiBorder

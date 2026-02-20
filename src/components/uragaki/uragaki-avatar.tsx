@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/avatar";
 import { UragakiBorder } from "./uragaki-border";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiAvatarProps extends React.ComponentProps<typeof Avatar> {
   roughness?: number;
@@ -17,12 +18,13 @@ export function UragakiAvatar({
   seed,
   ...props
 }: UragakiAvatarProps) {
+  const colors = useUragakiColors();
   return (
     <UragakiBorder
       roughness={roughness}
       seed={seed}
       strokeWidth={2}
-      stroke="oklch(0.65 0.01 70)"
+      stroke={colors.border}
       shape="ellipse"
     >
       <Avatar

@@ -4,6 +4,7 @@ import rough from "roughjs";
 import { clearSvg, defaultUragakiOptions } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon as ChevronDown } from "lucide-react";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 export function UragakiSelect(
   props: React.ComponentProps<typeof SelectPrimitive.Root>
@@ -36,6 +37,7 @@ export function UragakiSelectTrigger({
   seed,
   ...props
 }: UragakiSelectTriggerProps) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(seed ?? Math.floor(Math.random() * 2 ** 31));
@@ -62,11 +64,11 @@ export function UragakiSelectTrigger({
       ...defaultUragakiOptions,
       roughness,
       strokeWidth: 2,
-      stroke: "oklch(0.65 0.01 70)",
+      stroke: colors.border,
       seed: stableSeed.current,
     });
     svg.appendChild(node);
-  }, [dims, roughness]);
+  }, [dims, roughness, colors.border]);
 
   return (
     <div ref={containerRef} className="relative inline-block">
@@ -106,6 +108,7 @@ export function UragakiSelectContent({
   position = "popper",
   ...props
 }: UragakiSelectContentProps) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(Math.floor(Math.random() * 2 ** 31));
@@ -132,13 +135,13 @@ export function UragakiSelectContent({
       ...defaultUragakiOptions,
       roughness,
       strokeWidth: 2,
-      stroke: "oklch(0.65 0.01 70)",
-      fill: "oklch(0.97 0.005 90)",
+      stroke: colors.border,
+      fill: colors.background,
       fillStyle: "solid",
       seed: stableSeed.current,
     });
     svg.appendChild(node);
-  }, [dims, roughness]);
+  }, [dims, roughness, colors.border, colors.background]);
 
   return (
     <SelectPrimitive.Portal>

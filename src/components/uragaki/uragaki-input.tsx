@@ -3,6 +3,7 @@ import rough from "roughjs";
 import { Input } from "@/components/ui/input";
 import { clearSvg, defaultUragakiOptions } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiInputProps extends React.ComponentProps<"input"> {
   roughness?: number;
@@ -17,6 +18,7 @@ export function UragakiInput({
   borderStyle = "underline",
   ...props
 }: UragakiInputProps) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(seed ?? Math.floor(Math.random() * 2 ** 31));
@@ -45,7 +47,7 @@ export function UragakiInput({
         roughness,
         bowing: 0.5,
         strokeWidth: 2,
-        stroke: "oklch(0.65 0.01 70)",
+        stroke: colors.border,
         seed: stableSeed.current,
       });
       svg.appendChild(node);
@@ -54,12 +56,12 @@ export function UragakiInput({
         ...defaultUragakiOptions,
         roughness,
         strokeWidth: 2,
-        stroke: "oklch(0.65 0.01 70)",
+        stroke: colors.border,
         seed: stableSeed.current,
       });
       svg.appendChild(node);
     }
-  }, [dims, roughness, borderStyle]);
+  }, [dims, roughness, borderStyle, colors.border]);
 
   return (
     <div ref={containerRef} className="relative w-full">

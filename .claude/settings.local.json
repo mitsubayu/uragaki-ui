@@ -22,7 +22,11 @@
       "Bash(git remote add:*)",
       "Bash(git add:*)",
       "Bash(git rebase:*)",
-      "Bash(GIT_EDITOR=true git rebase:*)"
+      "Bash(GIT_EDITOR=true git rebase:*)",
+      "Bash(git commit:*)",
+      "Bash(node -e:*)",
+      "Bash(npx vite build:*)",
+      "Bash(pnpm run build:lib:*)"
     ]
   }
 }

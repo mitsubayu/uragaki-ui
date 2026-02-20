@@ -149,6 +149,12 @@
   background-size: 24px 24px;
 }
 
+.dark .uragaki-paper {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+}
+
 /* Hover wobble animation */
 @keyframes uragaki-wobble {
   0% { transform: rotate(-1.5deg) scale(1.02); }

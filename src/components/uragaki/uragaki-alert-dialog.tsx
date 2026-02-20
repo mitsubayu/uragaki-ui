@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { UragakiBorder } from "./uragaki-border";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 export function UragakiAlertDialog(
   props: React.ComponentProps<typeof AlertDialog>
@@ -37,6 +38,7 @@ export function UragakiAlertDialogContent({
   children,
   ...props
 }: UragakiAlertDialogContentProps) {
+  const colors = useUragakiColors();
   return (
     <AlertDialogContent
       className={cn(
@@ -49,7 +51,7 @@ export function UragakiAlertDialogContent({
         roughness={roughness}
         seed={seed}
         strokeWidth={2.5}
-        stroke="oklch(0.65 0.01 70)"
+        stroke={colors.border}
         block
       >
         <div className="p-6 grid gap-4">{children}</div>

@@ -3,6 +3,7 @@ import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import rough from "roughjs";
 import { clearSvg, defaultUragakiOptions } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiCheckboxProps
   extends React.ComponentProps<typeof CheckboxPrimitive.Root> {
@@ -16,6 +17,7 @@ export function UragakiCheckbox({
   seed,
   ...props
 }: UragakiCheckboxProps) {
+  const colors = useUragakiColors();
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(seed ?? Math.floor(Math.random() * 2 ** 31));
   const [checked, setChecked] = useState(false);
@@ -31,7 +33,7 @@ export function UragakiCheckbox({
       ...defaultUragakiOptions,
       roughness,
       strokeWidth: 2,
-      stroke: "oklch(0.65 0.01 70)",
+      stroke: colors.border,
       seed: stableSeed.current,
     });
     svg.appendChild(box);
@@ -42,12 +44,12 @@ export function UragakiCheckbox({
         ...defaultUragakiOptions,
         roughness: roughness * 0.8,
         strokeWidth: 2.5,
-        stroke: "oklch(0.45 0.15 250)",
+        stroke: colors.primary,
         seed: stableSeed.current + 1,
       });
       svg.appendChild(check);
     }
-  }, [checked, roughness]);
+  }, [checked, roughness, colors.border, colors.primary]);
 
   return (
     <CheckboxPrimitive.Root

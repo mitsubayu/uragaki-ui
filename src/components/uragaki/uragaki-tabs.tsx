@@ -3,6 +3,7 @@ import { Tabs as TabsPrimitive } from "radix-ui";
 import rough from "roughjs";
 import { clearSvg, defaultUragakiOptions } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 export function UragakiTabs({
   className,
@@ -21,6 +22,7 @@ export function UragakiTabsList({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List>) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(Math.floor(Math.random() * 2 ** 31));
@@ -48,11 +50,11 @@ export function UragakiTabsList({
       ...defaultUragakiOptions,
       roughness: 1,
       strokeWidth: 2,
-      stroke: "oklch(0.65 0.01 70)",
+      stroke: colors.border,
       seed: stableSeed.current,
     });
     svg.appendChild(node);
-  }, [dims]);
+  }, [dims, colors.border]);
 
   return (
     <div ref={containerRef} className="relative">
@@ -84,6 +86,7 @@ export function UragakiTabsTrigger({
   roughness = 3.5,
   ...props
 }: UragakiTabsTriggerProps) {
+  const colors = useUragakiColors();
   const ref = useRef<HTMLButtonElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(Math.floor(Math.random() * 2 ** 31));
@@ -125,14 +128,14 @@ export function UragakiTabsTrigger({
         ...defaultUragakiOptions,
         roughness,
         strokeWidth: 2,
-        stroke: "oklch(0.45 0.15 250)",
-        fill: "oklch(0.97 0.005 90)",
+        stroke: colors.primary,
+        fill: colors.background,
         fillStyle: "solid",
         seed: stableSeed.current,
       });
       svg.appendChild(node);
     }
-  }, [dims, isActive, roughness]);
+  }, [dims, isActive, roughness, colors.primary, colors.background]);
 
   useEffect(() => {
     draw();

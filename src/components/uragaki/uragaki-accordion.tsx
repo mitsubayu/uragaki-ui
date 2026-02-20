@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { UragakiBorder } from "./uragaki-border";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 type UragakiAccordionProps = React.ComponentProps<typeof Accordion> & {
   roughness?: number;
@@ -18,12 +19,13 @@ export function UragakiAccordion({
   seed,
   ...props
 }: UragakiAccordionProps) {
+  const colors = useUragakiColors();
   return (
     <UragakiBorder
       roughness={roughness}
       seed={seed}
       strokeWidth={2}
-      stroke="oklch(0.65 0.01 70)"
+      stroke={colors.border}
       block
     >
       <Accordion

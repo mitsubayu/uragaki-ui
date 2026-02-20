@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import rough from "roughjs";
 import { defaultUragakiOptions, clearSvg } from "@/lib/rough-helpers";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiSeparatorProps extends React.ComponentProps<"div"> {
   orientation?: "horizontal" | "vertical";
@@ -16,6 +17,7 @@ export function UragakiSeparator({
   className,
   ...props
 }: UragakiSeparatorProps) {
+  const colors = useUragakiColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const stableSeed = useRef(seed ?? Math.floor(Math.random() * 2 ** 31));
@@ -43,19 +45,19 @@ export function UragakiSeparator({
             ...defaultUragakiOptions,
             roughness,
             strokeWidth: 1.5,
-            stroke: "oklch(0.65 0.01 70)",
+            stroke: colors.border,
             seed: stableSeed.current,
           })
         : rc.line(1, 0, 1, dimensions.height, {
             ...defaultUragakiOptions,
             roughness,
             strokeWidth: 1.5,
-            stroke: "oklch(0.65 0.01 70)",
+            stroke: colors.border,
             seed: stableSeed.current,
           });
 
     svg.appendChild(node);
-  }, [dimensions, roughness, orientation]);
+  }, [dimensions, roughness, orientation, colors.border]);
 
   useEffect(() => {
     draw();

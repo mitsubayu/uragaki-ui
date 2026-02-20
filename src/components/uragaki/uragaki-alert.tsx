@@ -1,6 +1,7 @@
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { UragakiBorder } from "./uragaki-border";
 import { cn } from "@/lib/utils";
+import { useUragakiColors } from "@/lib/uragaki-colors";
 
 interface UragakiAlertProps extends React.ComponentProps<"div"> {
   variant?: "default" | "destructive";
@@ -16,8 +17,9 @@ export function UragakiAlert({
   variant,
   ...props
 }: UragakiAlertProps) {
+  const colors = useUragakiColors();
   const strokeColor =
-    variant === "destructive" ? "oklch(0.55 0.2 25)" : "oklch(0.65 0.01 70)";
+    variant === "destructive" ? colors.destructive : colors.border;
 
   return (
     <UragakiBorder
