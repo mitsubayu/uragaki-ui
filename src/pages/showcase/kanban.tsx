@@ -360,7 +360,7 @@ export function KanbanPage() {
               <UragakiCard
                 key={column.id}
                 seed={column.id}
-                className={`transition-shadow ${isDropTarget ? "ring-2 ring-primary/50 shadow-lg" : ""}`}
+                className={`h-full transition-shadow ${isDropTarget ? "ring-2 ring-primary/50 shadow-lg" : ""}`}
               >
                 <UragakiCardHeader>
                   <div className="flex items-center justify-between">
@@ -382,9 +382,9 @@ export function KanbanPage() {
                   </div>
                 </UragakiCardHeader>
                 <UragakiSeparator />
-                <UragakiCardContent className="pt-4">
+                <UragakiCardContent className="pt-4 flex-1">
                   <div
-                    className="space-y-3 min-h-[200px] rounded-md p-1 transition-colors"
+                    className="space-y-3 h-full min-h-[200px] rounded-md p-1 transition-colors"
                     onDragOver={(e: React.DragEvent) =>
                       handleDragOver(e, column.id)
                     }

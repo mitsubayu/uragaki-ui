@@ -51,7 +51,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen uragaki-paper">
       {/* Hero */}
-      <div className="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center">
+      <div className="max-w-[1600px] mx-auto px-6 pt-24 pb-16 text-center">
         <h1 className="font-[var(--font-uragaki-heading)] text-6xl font-bold mb-4">
           uragaki-ui
         </h1>
@@ -78,7 +78,7 @@ export function HomePage() {
       </div>
 
       {/* Why Sketchy UI */}
-      <div className="max-w-4xl mx-auto px-6 pb-20">
+      <div className="max-w-[1600px] mx-auto px-6 pb-20">
         <h2 className="font-[var(--font-uragaki-heading)] text-3xl font-bold text-center mb-10">
           なぜ手書き風？
         </h2>
@@ -117,12 +117,12 @@ export function HomePage() {
       </div>
 
       {/* Component Showcase */}
-      <div className="max-w-5xl mx-auto px-6 pb-24">
+      <div className="max-w-[1600px] mx-auto px-6 pb-24">
         <h2 className="font-[var(--font-uragaki-heading)] text-3xl font-bold text-center mb-12">
           コンポーネント
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {/* Buttons */}
           <UragakiCard>
             <UragakiCardHeader>
@@ -591,7 +591,7 @@ export function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="max-w-4xl mx-auto px-6 pb-12 text-center">
+      <footer className="max-w-[1600px] mx-auto px-6 pb-12 text-center">
         <UragakiSeparator className="mb-8" />
         <p className="text-sm text-muted-foreground">
           With great respect to Microsoft SketchFlow, which pioneered sketchy UI for prototyping.
