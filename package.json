@@ -54,11 +54,6 @@
     "react-dom": ">=18",
     "tailwindcss": ">=4"
   },
-  "peerDependenciesMeta": {
-    "lucide-react": {
-      "optional": true
-    }
-  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.2.0",

@@ -9,18 +9,12 @@
 
 ### Install
 ```bash
-npm install uragaki-ui roughjs
+npm install uragaki-ui
 ```
 
 ### Required Peer Dependencies
 - react >= 18, react-dom >= 18
 - tailwindcss >= 4
-- roughjs ^4.6.0
-- class-variance-authority ^0.7.0
-- clsx ^2.0.0
-- tailwind-merge ^3.0.0
-- radix-ui ^1.0.0
-- lucide-react >= 0.300.0 (optional, for icons)
 
 ### Setup
 ```tsx
