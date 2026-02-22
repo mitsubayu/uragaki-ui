@@ -51,7 +51,9 @@
       "Bash(npm version:*)",
       "Bash(gh repo view:*)",
       "Bash(gh api:*)",
-      "Bash(brew install:*)"
+      "Bash(brew install:*)",
+      "Bash(git config:*)",
+      "Bash(pnpm:*)"
     ]
   }
 }
