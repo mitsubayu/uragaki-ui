@@ -54,7 +54,12 @@
       "Bash(brew install:*)",
       "Bash(git config:*)",
       "Bash(pnpm:*)",
-      "Bash(npm unpublish:*)"
+      "Bash(npm unpublish:*)",
+      "WebFetch(domain:mitsubayu.github.io)",
+      "Bash(npx playwright:*)",
+      "WebFetch(domain:zenn.dev)",
+      "Bash(gh run list:*)",
+      "Bash(node scripts/take-screenshots.mjs:*)"
     ]
   }
 }

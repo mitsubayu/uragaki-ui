@@ -25,29 +25,16 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-echo "==> Checking npm auth..."
-if ! npm whoami >/dev/null 2>&1; then
-  echo "ERROR: npm に認証できません。"
-  echo ""
-  echo "以下のコマンドでログインしてください:"
-  echo "  npm login"
-  exit 1
-fi
-
 echo "==> Running type check..."
 npx tsc --noEmit
 
 echo "==> Bumping version to '$VERSION'..."
 npm version "$VERSION" -m "release: v%s"
 
-echo "==> Building library..."
-pnpm run build:lib
-
-echo "==> Publishing to npm..."
-npm publish --access public
-
 echo "==> Pushing version commit and tag..."
 git push "$REMOTE" main --follow-tags
 
 NEW_VERSION="$(node -p "require('./package.json').version")"
-echo "==> Published uragaki-ui@$NEW_VERSION successfully!"
+echo ""
+echo "==> Tag v$NEW_VERSION pushed! GitHub Actions will build and publish with provenance."
+echo "    https://github.com/mitsubayu/uragaki-ui/actions/workflows/publish.yml"
