@@ -47,7 +47,9 @@
       "Bash(gh auth status:*)",
       "Bash(ssh:*)",
       "Bash(ssh-keygen:*)",
-      "Bash(ssh-add:*)"
+      "Bash(ssh-add:*)",
+      "Bash(npm version:*)",
+      "Bash(gh repo view:*)"
     ]
   }
 }
