@@ -53,7 +53,8 @@
       "Bash(gh api:*)",
       "Bash(brew install:*)",
       "Bash(git config:*)",
-      "Bash(pnpm:*)"
+      "Bash(pnpm:*)",
+      "Bash(npm unpublish:*)"
     ]
   }
 }
