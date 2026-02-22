@@ -349,7 +349,7 @@ export function KanbanPage() {
 
         {/* Columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {COLUMNS.map((column) => {
+          {COLUMNS.map((column, columnIndex) => {
             const columnTasks = tasks
               .filter((t) => t.columnId === column.id)
               .sort((a, b) => a.createdAt - b.createdAt);
@@ -359,7 +359,7 @@ export function KanbanPage() {
             return (
               <UragakiCard
                 key={column.id}
-                seed={column.id}
+                seed={columnIndex}
                 className={`h-full transition-shadow ${isDropTarget ? "ring-2 ring-primary/50 shadow-lg" : ""}`}
               >
                 <UragakiCardHeader>
@@ -397,7 +397,7 @@ export function KanbanPage() {
                       <UragakiCard
                         key={task.id}
                         roughness={1.8}
-                        seed={task.id}
+                        seed={Number(task.id)}
                         draggable
                         onDragStart={(e: React.DragEvent) =>
                           handleDragStart(e, task.id)

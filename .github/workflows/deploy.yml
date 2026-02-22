@@ -1,5 +1,4 @@
-name: Deploy to GitHub Pages (CI - disabled on GHE)
-# GHE では Self-Hosted Runner が使えないため、ローカルから pnpm deploy:pages で実行
+name: Deploy to GitHub Pages
 # on:
 #   push:
 #     branches: [main]

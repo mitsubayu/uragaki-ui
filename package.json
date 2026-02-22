@@ -1,5 +1,5 @@
 {
-  "name": "@yu-izumoto/uragaki-ui",
+  "name": "uragaki-ui",
   "version": "0.1.0",
   "type": "module",
   "description": "Hand-drawn UI components built on shadcn/ui + rough.js",
@@ -19,6 +19,14 @@
     "llms.txt",
     "llms-full.txt"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mitsubayu/uragaki-ui.git"
+  },
+  "homepage": "https://github.com/mitsubayu/uragaki-ui#readme",
+  "bugs": {
+    "url": "https://github.com/mitsubayu/uragaki-ui/issues"
+  },
   "keywords": [
     "ui",
     "components",

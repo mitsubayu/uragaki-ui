@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Uragaki UI (`@yu-izumoto/uragaki-ui`) is a hand-drawn / sketchy UI component library built on **shadcn/ui + rough.js** for React. It wraps shadcn/ui (Radix UI) components with rough.js SVG overlays to create a paper-prototyping aesthetic.
+Uragaki UI (`uragaki-ui`) is a hand-drawn / sketchy UI component library built on **shadcn/ui + rough.js** for React. It wraps shadcn/ui (Radix UI) components with rough.js SVG overlays to create a paper-prototyping aesthetic.
 
 ## Tech Stack
 

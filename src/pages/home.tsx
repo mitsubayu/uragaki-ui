@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "@/components/docs/theme-toggle";
 import {
   UragakiButton,
   UragakiCard,
@@ -50,6 +51,11 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen uragaki-paper">
+      {/* Theme Toggle */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Hero */}
       <div className="max-w-[1600px] mx-auto px-6 pt-24 pb-16 text-center">
         <h1 className="font-[var(--font-uragaki-heading)] text-6xl font-bold mb-4">

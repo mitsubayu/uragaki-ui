@@ -1,5 +1,4 @@
-name: Publish to npm (CI - disabled on GHE)
-# GHE では Self-Hosted Runner が使えないため、ローカルから pnpm publish:npm <version> で実行
+name: Publish to npm
 # on:
 #   release:
 #     types: [published]

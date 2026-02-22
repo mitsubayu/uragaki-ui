@@ -25,14 +25,12 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-echo "==> Checking GHE npm auth..."
-if ! npm whoami --registry=https://npm.github.kddi.com >/dev/null 2>&1; then
-  echo "ERROR: GHE npm registry に認証できません。"
+echo "==> Checking npm auth..."
+if ! npm whoami >/dev/null 2>&1; then
+  echo "ERROR: npm に認証できません。"
   echo ""
-  echo "~/.npmrc に以下を追加してください:"
-  echo "  //npm.github.kddi.com/:_authToken=<GHE Personal Access Token>"
-  echo ""
-  echo "トークンには write:packages 権限が必要です。"
+  echo "以下のコマンドでログインしてください:"
+  echo "  npm login"
   exit 1
 fi
 
@@ -45,11 +43,11 @@ npm version "$VERSION" -m "release: v%s"
 echo "==> Building library..."
 pnpm run build:lib
 
-echo "==> Publishing to GHE npm Packages..."
-npm publish
+echo "==> Publishing to npm..."
+npm publish --access public
 
 echo "==> Pushing version commit and tag..."
 git push "$REMOTE" main --follow-tags
 
 NEW_VERSION="$(node -p "require('./package.json').version")"
-echo "==> Published @yu-izumoto/uragaki-ui@$NEW_VERSION successfully!"
+echo "==> Published uragaki-ui@$NEW_VERSION successfully!"

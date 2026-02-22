@@ -5,31 +5,20 @@ PoC開発専用のペーパープロトタイピングライクUI
 shadcn/ui と rough.js をベースにした手書き風UIコンポーネントライブラリです。
 プロトタイピング、ワイヤーフレーム作成、遊び心のあるアプリケーションに最適なスケッチスタイルのコンポーネントを提供します。
 
-## インストール（利用者向け）
-
-### 1. GHE で `read:packages` 権限の Personal Access Token を取得
-
-### 2. `~/.npmrc` に以下を記述
-
-```
-//npm.github.kddi.com/:_authToken=<取得したトークン>
-@yu-izumoto:registry=https://npm.github.kddi.com
-```
-
-### 3. インストール
+## インストール
 
 ```bash
-npm install @yu-izumoto/uragaki-ui
+npm install uragaki-ui roughjs
 ```
 
 ### 4. セットアップ
 
 ```tsx
 // スタイルのインポート（必須）
-import "@yu-izumoto/uragaki-ui/styles.css";
+import "uragaki-ui/styles.css";
 
 // ThemeProvider でアプリをラップ（ダークモード対応）
-import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+import { ThemeProvider } from "uragaki-ui";
 
 function App() {
   return (
@@ -50,13 +39,13 @@ radix-ui ^1.0.0, lucide-react >= 0.300.0 (optional)
 
 ## 使い方
 
-すべてのコンポーネントは `@yu-izumoto/uragaki-ui` からインポートします。
+すべてのコンポーネントは `uragaki-ui` からインポートします。
 shadcn/ui と同じAPIに `Uragaki` プレフィックスを付けた名前です。
 
 ### Button
 
 ```tsx
-import { UragakiButton } from "@yu-izumoto/uragaki-ui";
+import { UragakiButton } from "uragaki-ui";
 
 <UragakiButton variant="default">Primary</UragakiButton>
 <UragakiButton variant="destructive">Delete</UragakiButton>
@@ -74,7 +63,7 @@ import { UragakiButton } from "@yu-izumoto/uragaki-ui";
 ### Input
 
 ```tsx
-import { UragakiInput } from "@yu-izumoto/uragaki-ui";
+import { UragakiInput } from "uragaki-ui";
 
 <UragakiInput placeholder="名前" />
 <UragakiInput borderStyle="box" placeholder="ボックス型" />
@@ -86,7 +75,7 @@ import { UragakiInput } from "@yu-izumoto/uragaki-ui";
 ### Textarea
 
 ```tsx
-import { UragakiTextarea } from "@yu-izumoto/uragaki-ui";
+import { UragakiTextarea } from "uragaki-ui";
 
 <UragakiTextarea placeholder="メッセージを入力..." rows={4} />
 ```
@@ -99,7 +88,7 @@ import { UragakiTextarea } from "@yu-izumoto/uragaki-ui";
 import {
   UragakiCard, UragakiCardHeader, UragakiCardTitle,
   UragakiCardDescription, UragakiCardContent, UragakiCardFooter
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiCard>
   <UragakiCardHeader>
@@ -120,7 +109,7 @@ import {
 ### Badge
 
 ```tsx
-import { UragakiBadge } from "@yu-izumoto/uragaki-ui";
+import { UragakiBadge } from "uragaki-ui";
 
 <UragakiBadge>Default</UragakiBadge>
 <UragakiBadge variant="destructive">Error</UragakiBadge>
@@ -133,7 +122,7 @@ import { UragakiBadge } from "@yu-izumoto/uragaki-ui";
 ### Alert
 
 ```tsx
-import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "@yu-izumoto/uragaki-ui";
+import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "uragaki-ui";
 
 <UragakiAlert>
   <UragakiAlertTitle>お知らせ</UragakiAlertTitle>
@@ -151,8 +140,8 @@ import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "@yu-iz
 ### Checkbox
 
 ```tsx
-import { UragakiCheckbox } from "@yu-izumoto/uragaki-ui";
-import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+import { UragakiCheckbox } from "uragaki-ui";
+import { UragakiLabel } from "uragaki-ui";
 
 <div className="flex items-center gap-2">
   <UragakiCheckbox id="terms" />
@@ -163,8 +152,8 @@ import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
 ### RadioGroup
 
 ```tsx
-import { UragakiRadioGroup, UragakiRadioGroupItem } from "@yu-izumoto/uragaki-ui";
-import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+import { UragakiRadioGroup, UragakiRadioGroupItem } from "uragaki-ui";
+import { UragakiLabel } from "uragaki-ui";
 
 <UragakiRadioGroup defaultValue="opt1">
   <div className="flex items-center gap-2">
@@ -184,7 +173,7 @@ import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
 import {
   UragakiSelect, UragakiSelectTrigger, UragakiSelectContent,
   UragakiSelectItem, UragakiSelectValue
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiSelect>
   <UragakiSelectTrigger className="w-[200px]">
@@ -203,7 +192,7 @@ import {
 ### Switch
 
 ```tsx
-import { UragakiSwitch } from "@yu-izumoto/uragaki-ui";
+import { UragakiSwitch } from "uragaki-ui";
 
 <div className="flex items-center gap-2">
   <UragakiSwitch id="notifications" />
@@ -214,7 +203,7 @@ import { UragakiSwitch } from "@yu-izumoto/uragaki-ui";
 ### Tabs
 
 ```tsx
-import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "uragaki-ui";
 
 <UragakiTabs defaultValue="tab1">
   <UragakiTabsList>
@@ -229,7 +218,7 @@ import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } 
 ### Accordion
 
 ```tsx
-import { UragakiAccordion, UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiAccordion, UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent } from "uragaki-ui";
 
 <UragakiAccordion type="single" collapsible>
   <UragakiAccordionItem value="item-1">
@@ -252,7 +241,7 @@ import {
   UragakiDialog, UragakiDialogTrigger, UragakiDialogContent,
   UragakiDialogHeader, UragakiDialogFooter, UragakiDialogTitle,
   UragakiDialogDescription, UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDialog>
   <UragakiDialogTrigger asChild>
@@ -277,7 +266,7 @@ import {
   UragakiAlertDialog, UragakiAlertDialogTrigger, UragakiAlertDialogContent,
   UragakiAlertDialogHeader, UragakiAlertDialogFooter, UragakiAlertDialogTitle,
   UragakiAlertDialogDescription, UragakiAlertDialogAction, UragakiAlertDialogCancel
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiAlertDialog>
   <UragakiAlertDialogTrigger asChild>
@@ -302,7 +291,7 @@ import {
 import {
   UragakiSheet, UragakiSheetTrigger, UragakiSheetContent,
   UragakiSheetHeader, UragakiSheetTitle, UragakiSheetDescription
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiSheet>
   <UragakiSheetTrigger asChild>
@@ -325,7 +314,7 @@ import {
   UragakiDrawer, UragakiDrawerTrigger, UragakiDrawerContent,
   UragakiDrawerHeader, UragakiDrawerTitle, UragakiDrawerDescription,
   UragakiDrawerFooter, UragakiDrawerClose
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDrawer>
   <UragakiDrawerTrigger asChild>
@@ -349,7 +338,7 @@ import {
 ### Popover
 
 ```tsx
-import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent } from "uragaki-ui";
 
 <UragakiPopover>
   <UragakiPopoverTrigger asChild>
@@ -364,7 +353,7 @@ import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent } from "@y
 ### Tooltip
 
 ```tsx
-import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiTooltipContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiTooltipContent } from "uragaki-ui";
 
 <UragakiTooltipProvider>
   <UragakiTooltip>
@@ -384,7 +373,7 @@ import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiT
 import {
   UragakiDropdownMenu, UragakiDropdownMenuTrigger, UragakiDropdownMenuContent,
   UragakiDropdownMenuItem, UragakiDropdownMenuLabel, UragakiDropdownMenuSeparator
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDropdownMenu>
   <UragakiDropdownMenuTrigger asChild>
@@ -407,7 +396,7 @@ import {
 import {
   UragakiTable, UragakiTableHeader, UragakiTableBody,
   UragakiTableRow, UragakiTableHead, UragakiTableCell
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiTable>
   <UragakiTableHeader>
@@ -435,7 +424,7 @@ import {
   UragakiForm, UragakiFormField, UragakiFormItem,
   UragakiFormLabel, UragakiFormControl, UragakiFormMessage,
   UragakiInput, UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 const schema = z.object({ name: z.string().min(1) });
 
@@ -467,7 +456,7 @@ function MyForm() {
 ### Sonner (トースト通知)
 
 ```tsx
-import { UragakiSonner } from "@yu-izumoto/uragaki-ui";
+import { UragakiSonner } from "uragaki-ui";
 import { toast } from "sonner";
 
 // レイアウトに配置
@@ -482,7 +471,7 @@ toast.error("エラーが発生しました");
 ### Avatar
 
 ```tsx
-import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "@yu-izumoto/uragaki-ui";
+import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "uragaki-ui";
 
 <UragakiAvatar>
   <UragakiAvatarImage src="/avatar.jpg" alt="ユーザー" />
@@ -493,7 +482,7 @@ import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "@yu-iz
 ### Progress
 
 ```tsx
-import { UragakiProgress } from "@yu-izumoto/uragaki-ui";
+import { UragakiProgress } from "uragaki-ui";
 
 <UragakiProgress value={60} />
 ```
@@ -501,7 +490,7 @@ import { UragakiProgress } from "@yu-izumoto/uragaki-ui";
 ### Separator
 
 ```tsx
-import { UragakiSeparator } from "@yu-izumoto/uragaki-ui";
+import { UragakiSeparator } from "uragaki-ui";
 
 <UragakiSeparator />
 <UragakiSeparator orientation="vertical" className="h-8" />
@@ -512,7 +501,7 @@ import { UragakiSeparator } from "@yu-izumoto/uragaki-ui";
 ### Skeleton
 
 ```tsx
-import { UragakiSkeleton } from "@yu-izumoto/uragaki-ui";
+import { UragakiSkeleton } from "uragaki-ui";
 
 <UragakiSkeleton className="h-4 w-[250px]" />
 <UragakiSkeleton className="h-12 w-12 rounded-full" />
@@ -521,7 +510,7 @@ import { UragakiSkeleton } from "@yu-izumoto/uragaki-ui";
 ### Calendar
 
 ```tsx
-import { UragakiCalendar } from "@yu-izumoto/uragaki-ui";
+import { UragakiCalendar } from "uragaki-ui";
 
 const [date, setDate] = useState<Date | undefined>();
 <UragakiCalendar mode="single" selected={date} onSelect={setDate} />
@@ -533,7 +522,7 @@ const [date, setDate] = useState<Date | undefined>();
 import {
   UragakiBreadcrumb, UragakiBreadcrumbList, UragakiBreadcrumbItem,
   UragakiBreadcrumbLink, UragakiBreadcrumbSeparator, UragakiBreadcrumbPage
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiBreadcrumb>
   <UragakiBreadcrumbList>
@@ -551,7 +540,7 @@ import {
 ### Carousel
 
 ```tsx
-import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext } from "@yu-izumoto/uragaki-ui";
+import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext } from "uragaki-ui";
 
 <UragakiCarousel>
   <UragakiCarouselContent>
@@ -569,7 +558,7 @@ import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCa
 import {
   UragakiCommand, UragakiCommandInput, UragakiCommandList,
   UragakiCommandEmpty, UragakiCommandGroup, UragakiCommandItem
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiCommand>
   <UragakiCommandInput placeholder="検索..." />
@@ -589,7 +578,7 @@ import {
 import {
   UragakiPagination, UragakiPaginationContent, UragakiPaginationItem,
   UragakiPaginationLink, UragakiPaginationPrevious, UragakiPaginationNext
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiPagination>
   <UragakiPaginationContent>
@@ -615,7 +604,7 @@ rough.js を使うコンポーネントは以下の共通プロパティを受�
 任意のコンテンツに手書き風ボーダーを付与するコアラッパーです。
 
 ```tsx
-import { UragakiBorder } from "@yu-izumoto/uragaki-ui";
+import { UragakiBorder } from "uragaki-ui";
 
 <UragakiBorder shape="rectangle" roughness={2.6} seed={42} fill="#f0f0f0">
   <p>手書き風ボーダー付きコンテンツ</p>
@@ -640,7 +629,7 @@ import { UragakiBorder } from "@yu-izumoto/uragaki-ui";
 ダークモード切り替えを管理します。
 
 ```tsx
-import { ThemeProvider, useTheme } from "@yu-izumoto/uragaki-ui";
+import { ThemeProvider, useTheme } from "uragaki-ui";
 
 // プロバイダー
 <ThemeProvider defaultTheme="system" storageKey="uragaki-ui-theme">
@@ -675,11 +664,6 @@ setTheme("dark"); // "light" | "dark" | "system"
 
 ### 事前準備
 
-```
-//npm.github.kddi.com/:_authToken=<トークン（write:packages 権限）>
-@yu-izumoto:registry=https://npm.github.kddi.com
-```
-
 ```bash
 pnpm install
 ```
@@ -691,7 +675,7 @@ pnpm dev              # 開発サーバー起動
 pnpm storybook        # Storybook 起動（コンポーネントカタログ）
 pnpm build:lib        # ライブラリビルド
 pnpm deploy:pages     # ドキュメントサイト + Storybook を GitHub Pages にデプロイ
-pnpm publish:npm <version>  # GHE npm Packages にパッケージを公開
+pnpm publish:npm <version>  # npm にパッケージを公開
 ```
 
 ### パッケージ公開

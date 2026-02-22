@@ -36,7 +36,18 @@
       "Bash(curl:*)",
       "Bash(find:*)",
       "Bash(test:*)",
-      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline -15)"
+      "Bash(git -C /Users/yukiizumoto/Desktop/shadcn log --oneline -15)",
+      "Bash(pnpm build:lib:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(npm whoami:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(npm view:*)",
+      "Bash(npm publish:*)",
+      "Bash(npm config set:*)",
+      "Bash(gh auth status:*)",
+      "Bash(ssh:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(ssh-add:*)"
     ]
   }
 }

@@ -9,7 +9,7 @@
 
 ### Install
 ```bash
-npm install @yu-izumoto/uragaki-ui roughjs
+npm install uragaki-ui roughjs
 ```
 
 ### Required Peer Dependencies
@@ -24,8 +24,8 @@ npm install @yu-izumoto/uragaki-ui roughjs
 
 ### Setup
 ```tsx
-import "@yu-izumoto/uragaki-ui/styles.css";
-import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+import "uragaki-ui/styles.css";
+import { ThemeProvider } from "uragaki-ui";
 
 function App() {
   return (
@@ -90,7 +90,7 @@ Font variables:
 Manages light/dark theme with system preference detection.
 
 ```tsx
-import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
+import { ThemeProvider } from "uragaki-ui";
 
 <ThemeProvider
   defaultTheme="system"  // "light" | "dark" | "system"
@@ -102,7 +102,7 @@ import { ThemeProvider } from "@yu-izumoto/uragaki-ui";
 
 ### useTheme
 ```tsx
-import { useTheme } from "@yu-izumoto/uragaki-ui";
+import { useTheme } from "uragaki-ui";
 
 const { theme, setTheme, resolvedTheme } = useTheme();
 // theme: "light" | "dark" | "system"
@@ -113,7 +113,7 @@ const { theme, setTheme, resolvedTheme } = useTheme();
 Core wrapper that adds rough.js borders to any content.
 
 ```tsx
-import { UragakiBorder } from "@yu-izumoto/uragaki-ui";
+import { UragakiBorder } from "uragaki-ui";
 
 <UragakiBorder
   roughness={2.6}
@@ -147,7 +147,7 @@ Hand-drawn button with multiple variants.
 | seed | number | auto | Rendering seed |
 
 ```tsx
-import { UragakiButton } from "@yu-izumoto/uragaki-ui";
+import { UragakiButton } from "uragaki-ui";
 
 <UragakiButton variant="default">Primary</UragakiButton>
 <UragakiButton variant="destructive">Delete</UragakiButton>
@@ -181,7 +181,7 @@ Hand-drawn text input with two border styles.
 | + all standard input props | | | type, placeholder, value, onChange, etc. |
 
 ```tsx
-import { UragakiInput } from "@yu-izumoto/uragaki-ui";
+import { UragakiInput } from "uragaki-ui";
 
 <UragakiInput placeholder="Name" />
 <UragakiInput borderStyle="box" placeholder="Boxed input" />
@@ -201,7 +201,7 @@ Hand-drawn textarea with rough.js box border.
 | + all standard textarea props | | | placeholder, rows, value, onChange, etc. |
 
 ```tsx
-import { UragakiTextarea } from "@yu-izumoto/uragaki-ui";
+import { UragakiTextarea } from "uragaki-ui";
 
 <UragakiTextarea placeholder="Write something..." rows={4} />
 ```
@@ -223,7 +223,7 @@ Hand-drawn card container with header, content, and footer sections.
 import {
   UragakiCard, UragakiCardHeader, UragakiCardTitle,
   UragakiCardDescription, UragakiCardContent, UragakiCardFooter
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiCard>
   <UragakiCardHeader>
@@ -251,7 +251,7 @@ Inline badge with ellipse-shaped rough.js border.
 | seed | number | auto | Rendering seed |
 
 ```tsx
-import { UragakiBadge } from "@yu-izumoto/uragaki-ui";
+import { UragakiBadge } from "uragaki-ui";
 
 <UragakiBadge>Default</UragakiBadge>
 <UragakiBadge variant="destructive">Error</UragakiBadge>
@@ -273,7 +273,7 @@ Alert box with variant-based styling.
 | seed | number | auto | Rendering seed |
 
 ```tsx
-import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "@yu-izumoto/uragaki-ui";
+import { UragakiAlert, UragakiAlertTitle, UragakiAlertDescription } from "uragaki-ui";
 
 <UragakiAlert>
   <UragakiAlertTitle>Heads up!</UragakiAlertTitle>
@@ -299,8 +299,8 @@ Hand-drawn checkbox with rough.js SVG rendering.
 | onCheckedChange | (checked: boolean) => void | - | Change handler |
 
 ```tsx
-import { UragakiCheckbox } from "@yu-izumoto/uragaki-ui";
-import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+import { UragakiCheckbox } from "uragaki-ui";
+import { UragakiLabel } from "uragaki-ui";
 
 <div className="flex items-center gap-2">
   <UragakiCheckbox id="terms" />
@@ -316,8 +316,8 @@ Hand-drawn radio buttons with ellipse-shaped borders.
 **Subcomponents:** UragakiRadioGroupItem
 
 ```tsx
-import { UragakiRadioGroup, UragakiRadioGroupItem } from "@yu-izumoto/uragaki-ui";
-import { UragakiLabel } from "@yu-izumoto/uragaki-ui";
+import { UragakiRadioGroup, UragakiRadioGroupItem } from "uragaki-ui";
+import { UragakiLabel } from "uragaki-ui";
 
 <UragakiRadioGroup defaultValue="option1">
   <div className="flex items-center gap-2">
@@ -352,7 +352,7 @@ Hand-drawn select dropdown.
 import {
   UragakiSelect, UragakiSelectTrigger, UragakiSelectContent,
   UragakiSelectItem, UragakiSelectValue
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiSelect>
   <UragakiSelectTrigger className="w-[200px]">
@@ -379,7 +379,7 @@ Hand-drawn toggle switch with ellipse border.
 | onCheckedChange | (checked: boolean) => void | - | Change handler |
 
 ```tsx
-import { UragakiSwitch } from "@yu-izumoto/uragaki-ui";
+import { UragakiSwitch } from "uragaki-ui";
 
 <div className="flex items-center gap-2">
   <UragakiSwitch id="notifications" />
@@ -400,7 +400,7 @@ Range slider with sketchy styling.
 | step | number | 1 | Step increment |
 
 ```tsx
-import { UragakiSlider } from "@yu-izumoto/uragaki-ui";
+import { UragakiSlider } from "uragaki-ui";
 
 <UragakiSlider defaultValue={[50]} max={100} step={1} />
 ```
@@ -411,8 +411,8 @@ import { UragakiSlider } from "@yu-izumoto/uragaki-ui";
 Hand-drawn toggle buttons.
 
 ```tsx
-import { UragakiToggle } from "@yu-izumoto/uragaki-ui";
-import { UragakiToggleGroup, UragakiToggleGroupItem } from "@yu-izumoto/uragaki-ui";
+import { UragakiToggle } from "uragaki-ui";
+import { UragakiToggleGroup, UragakiToggleGroupItem } from "uragaki-ui";
 import { Bold, Italic, Underline } from "lucide-react";
 
 <UragakiToggle aria-label="Toggle bold">
@@ -439,7 +439,7 @@ Tabbed interface with rough.js active state.
 | value | string | required | Tab identifier |
 
 ```tsx
-import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiTabs, UragakiTabsList, UragakiTabsTrigger, UragakiTabsContent } from "uragaki-ui";
 
 <UragakiTabs defaultValue="account">
   <UragakiTabsList>
@@ -465,7 +465,7 @@ Expandable sections with rough.js borders.
 | roughness | number | 2.6 | Border roughness |
 
 ```tsx
-import { UragakiAccordion, UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiAccordion, UragakiAccordionItem, UragakiAccordionTrigger, UragakiAccordionContent } from "uragaki-ui";
 
 <UragakiAccordion type="single" collapsible>
   <UragakiAccordionItem value="item-1">
@@ -496,7 +496,7 @@ import {
   UragakiDialog, UragakiDialogTrigger, UragakiDialogContent,
   UragakiDialogHeader, UragakiDialogFooter, UragakiDialogTitle,
   UragakiDialogDescription, UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDialog>
   <UragakiDialogTrigger asChild>
@@ -531,7 +531,7 @@ import {
   UragakiAlertDialogHeader, UragakiAlertDialogFooter, UragakiAlertDialogTitle,
   UragakiAlertDialogDescription, UragakiAlertDialogAction, UragakiAlertDialogCancel,
   UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiAlertDialog>
   <UragakiAlertDialogTrigger asChild>
@@ -562,7 +562,7 @@ import {
   UragakiSheet, UragakiSheetTrigger, UragakiSheetContent,
   UragakiSheetHeader, UragakiSheetTitle, UragakiSheetDescription,
   UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiSheet>
   <UragakiSheetTrigger asChild>
@@ -590,7 +590,7 @@ import {
   UragakiDrawer, UragakiDrawerTrigger, UragakiDrawerContent,
   UragakiDrawerHeader, UragakiDrawerTitle, UragakiDrawerDescription,
   UragakiDrawerFooter, UragakiDrawerClose, UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDrawer>
   <UragakiDrawerTrigger asChild>
@@ -624,7 +624,7 @@ Floating content anchored to a trigger.
 | seed | number | auto | Rendering seed |
 
 ```tsx
-import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+import { UragakiPopover, UragakiPopoverTrigger, UragakiPopoverContent, UragakiButton } from "uragaki-ui";
 
 <UragakiPopover>
   <UragakiPopoverTrigger asChild>
@@ -644,7 +644,7 @@ Content shown on hover over a trigger.
 **Subcomponents:** UragakiHoverCardTrigger, UragakiHoverCardContent
 
 ```tsx
-import { UragakiHoverCard, UragakiHoverCardTrigger, UragakiHoverCardContent } from "@yu-izumoto/uragaki-ui";
+import { UragakiHoverCard, UragakiHoverCardTrigger, UragakiHoverCardContent } from "uragaki-ui";
 
 <UragakiHoverCard>
   <UragakiHoverCardTrigger asChild>
@@ -664,7 +664,7 @@ Small tooltip on hover.
 **Subcomponents:** UragakiTooltipProvider, UragakiTooltipTrigger, UragakiTooltipContent
 
 ```tsx
-import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiTooltipContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+import { UragakiTooltipProvider, UragakiTooltip, UragakiTooltipTrigger, UragakiTooltipContent, UragakiButton } from "uragaki-ui";
 
 <UragakiTooltipProvider>
   <UragakiTooltip>
@@ -690,7 +690,7 @@ import {
   UragakiDropdownMenu, UragakiDropdownMenuTrigger, UragakiDropdownMenuContent,
   UragakiDropdownMenuItem, UragakiDropdownMenuLabel, UragakiDropdownMenuSeparator,
   UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiDropdownMenu>
   <UragakiDropdownMenuTrigger asChild>
@@ -718,7 +718,7 @@ Right-click context menu.
 import {
   UragakiContextMenu, UragakiContextMenuTrigger, UragakiContextMenuContent,
   UragakiContextMenuItem
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiContextMenu>
   <UragakiContextMenuTrigger className="p-8 border border-dashed">
@@ -743,7 +743,7 @@ Horizontal menu bar (like desktop app menus).
 import {
   UragakiMenubar, UragakiMenubarMenu, UragakiMenubarTrigger,
   UragakiMenubarContent, UragakiMenubarItem, UragakiMenubarSeparator
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiMenubar>
   <UragakiMenubarMenu>
@@ -766,7 +766,7 @@ Circular avatar with ellipse-shaped rough.js border.
 **Subcomponents:** UragakiAvatarImage, UragakiAvatarFallback
 
 ```tsx
-import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "@yu-izumoto/uragaki-ui";
+import { UragakiAvatar, UragakiAvatarImage, UragakiAvatarFallback } from "uragaki-ui";
 
 <UragakiAvatar>
   <UragakiAvatarImage src="https://example.com/avatar.jpg" alt="User" />
@@ -785,7 +785,7 @@ Progress bar with rough.js border.
 | roughness | number | 2.6 | Border roughness |
 
 ```tsx
-import { UragakiProgress } from "@yu-izumoto/uragaki-ui";
+import { UragakiProgress } from "uragaki-ui";
 
 <UragakiProgress value={60} />
 ```
@@ -796,7 +796,7 @@ import { UragakiProgress } from "@yu-izumoto/uragaki-ui";
 Loading placeholder with sketchy border.
 
 ```tsx
-import { UragakiSkeleton } from "@yu-izumoto/uragaki-ui";
+import { UragakiSkeleton } from "uragaki-ui";
 
 <div className="space-y-2">
   <UragakiSkeleton className="h-4 w-[250px]" />
@@ -816,7 +816,7 @@ Hand-drawn horizontal or vertical line.
 | roughness | number | 2.6 | Line roughness |
 
 ```tsx
-import { UragakiSeparator } from "@yu-izumoto/uragaki-ui";
+import { UragakiSeparator } from "uragaki-ui";
 
 <UragakiSeparator />
 <UragakiSeparator orientation="vertical" className="h-8" />
@@ -833,7 +833,7 @@ Data table with rough.js border wrapper.
 import {
   UragakiTable, UragakiTableHeader, UragakiTableBody,
   UragakiTableRow, UragakiTableHead, UragakiTableCell
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiTable>
   <UragakiTableHeader>
@@ -864,7 +864,7 @@ Date picker calendar with rough.js border.
 | + all react-day-picker DayPicker props | | | |
 
 ```tsx
-import { UragakiCalendar } from "@yu-izumoto/uragaki-ui";
+import { UragakiCalendar } from "uragaki-ui";
 
 const [date, setDate] = useState<Date | undefined>();
 <UragakiCalendar mode="single" selected={date} onSelect={setDate} />
@@ -878,7 +878,7 @@ Expandable/collapsible content section.
 **Subcomponents:** UragakiCollapsibleTrigger, UragakiCollapsibleContent
 
 ```tsx
-import { UragakiCollapsible, UragakiCollapsibleTrigger, UragakiCollapsibleContent, UragakiButton } from "@yu-izumoto/uragaki-ui";
+import { UragakiCollapsible, UragakiCollapsibleTrigger, UragakiCollapsibleContent, UragakiButton } from "uragaki-ui";
 
 <UragakiCollapsible>
   <UragakiCollapsibleTrigger asChild>
@@ -900,7 +900,7 @@ Maintains aspect ratio with rough.js border.
 | ratio | number | 16/9 | Width/height ratio |
 
 ```tsx
-import { UragakiAspectRatio } from "@yu-izumoto/uragaki-ui";
+import { UragakiAspectRatio } from "uragaki-ui";
 
 <UragakiAspectRatio ratio={16 / 9}>
   <img src="image.jpg" alt="Photo" className="object-cover w-full h-full" />
@@ -915,7 +915,7 @@ Scrollable area with rough.js border.
 **Subcomponents:** UragakiScrollBar
 
 ```tsx
-import { UragakiScrollArea } from "@yu-izumoto/uragaki-ui";
+import { UragakiScrollArea } from "uragaki-ui";
 
 <UragakiScrollArea className="h-[200px] w-[300px]">
   <div className="p-4">
@@ -936,7 +936,7 @@ Resizable panel layout with rough.js border.
 | direction | "horizontal" \| "vertical" | required | Panel layout direction |
 
 ```tsx
-import { UragakiResizablePanelGroup, UragakiResizablePanel, UragakiResizableHandle } from "@yu-izumoto/uragaki-ui";
+import { UragakiResizablePanelGroup, UragakiResizablePanel, UragakiResizableHandle } from "uragaki-ui";
 
 <UragakiResizablePanelGroup direction="horizontal">
   <UragakiResizablePanel defaultSize={50}>Left panel</UragakiResizablePanel>
@@ -960,7 +960,7 @@ import {
   UragakiForm, UragakiFormField, UragakiFormItem,
   UragakiFormLabel, UragakiFormControl, UragakiFormMessage,
   UragakiInput, UragakiButton
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 const schema = z.object({ name: z.string().min(1) });
 
@@ -998,7 +998,7 @@ One-time password input with sketchy slots.
 **Subcomponents:** UragakiInputOTPGroup, UragakiInputOTPSlot, UragakiInputOTPSeparator
 
 ```tsx
-import { UragakiInputOTP, UragakiInputOTPGroup, UragakiInputOTPSlot } from "@yu-izumoto/uragaki-ui";
+import { UragakiInputOTP, UragakiInputOTPGroup, UragakiInputOTPSlot } from "uragaki-ui";
 
 <UragakiInputOTP maxLength={6}>
   <UragakiInputOTPGroup>
@@ -1020,7 +1020,7 @@ import { UragakiInputOTP, UragakiInputOTPGroup, UragakiInputOTPSlot } from "@yu-
 Toast notification system (wraps Sonner).
 
 ```tsx
-import { UragakiSonner } from "@yu-izumoto/uragaki-ui";
+import { UragakiSonner } from "uragaki-ui";
 import { toast } from "sonner";
 
 // Add to layout
@@ -1040,7 +1040,7 @@ Image/content carousel (uses embla-carousel-react).
 **Subcomponents:** UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext
 
 ```tsx
-import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext } from "@yu-izumoto/uragaki-ui";
+import { UragakiCarousel, UragakiCarouselContent, UragakiCarouselItem, UragakiCarouselPrevious, UragakiCarouselNext } from "uragaki-ui";
 
 <UragakiCarousel>
   <UragakiCarouselContent>
@@ -1064,7 +1064,7 @@ Command palette / search interface (uses cmdk).
 import {
   UragakiCommand, UragakiCommandInput, UragakiCommandList,
   UragakiCommandEmpty, UragakiCommandGroup, UragakiCommandItem
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiCommand>
   <UragakiCommandInput placeholder="Search..." />
@@ -1089,7 +1089,7 @@ Desktop navigation menu with dropdowns.
 import {
   UragakiNavigationMenu, UragakiNavigationMenuList, UragakiNavigationMenuItem,
   UragakiNavigationMenuTrigger, UragakiNavigationMenuContent, UragakiNavigationMenuLink
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiNavigationMenu>
   <UragakiNavigationMenuList>
@@ -1114,7 +1114,7 @@ Breadcrumb navigation.
 import {
   UragakiBreadcrumb, UragakiBreadcrumbList, UragakiBreadcrumbItem,
   UragakiBreadcrumbLink, UragakiBreadcrumbSeparator, UragakiBreadcrumbPage
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiBreadcrumb>
   <UragakiBreadcrumbList>
@@ -1140,7 +1140,7 @@ Page navigation.
 import {
   UragakiPagination, UragakiPaginationContent, UragakiPaginationItem,
   UragakiPaginationLink, UragakiPaginationPrevious, UragakiPaginationNext
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiPagination>
   <UragakiPaginationContent>
@@ -1168,7 +1168,7 @@ import {
   UragakiSidebarContent, UragakiSidebarGroup, UragakiSidebarGroupLabel,
   UragakiSidebarGroupContent, UragakiSidebarMenu, UragakiSidebarMenuItem,
   UragakiSidebarMenuButton, UragakiSidebarInset, UragakiSidebarTrigger
-} from "@yu-izumoto/uragaki-ui";
+} from "uragaki-ui";
 
 <UragakiSidebarProvider>
   <UragakiSidebar>
@@ -1205,7 +1205,7 @@ Chart wrapper for recharts with sketchy styling.
 **Type:** ChartConfig
 
 ```tsx
-import { UragakiChartContainer, UragakiChartTooltip, UragakiChartTooltipContent, type ChartConfig } from "@yu-izumoto/uragaki-ui";
+import { UragakiChartContainer, UragakiChartTooltip, UragakiChartTooltipContent, type ChartConfig } from "uragaki-ui";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 
 const chartConfig: ChartConfig = {

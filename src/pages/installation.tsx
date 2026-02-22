@@ -13,55 +13,24 @@ export function InstallationPage() {
       {/* Step 1 */}
       <div className="space-y-4">
         <h2 className="font-[var(--font-uragaki-heading)] text-xl font-bold">
-          1. Personal Access Token の取得
+          1. パッケージのインストール
         </h2>
-        <p className="text-sm text-foreground/80">
-          GHE で{" "}
-          <code className="bg-muted px-1 py-0.5 rounded text-xs">
-            read:packages
-          </code>{" "}
-          権限がついた Personal Access Token を取得してください。
-        </p>
+        <pre className="bg-muted/50 p-4 rounded text-sm overflow-x-auto">
+          <code>npm install uragaki-ui roughjs</code>
+        </pre>
       </div>
 
       {/* Step 2 */}
       <div className="space-y-4">
         <h2 className="font-[var(--font-uragaki-heading)] text-xl font-bold">
-          2. ~/.npmrc の設定
-        </h2>
-        <p className="text-sm text-foreground/80">
-          <code className="bg-muted px-1 py-0.5 rounded text-xs">
-            ~/.npmrc
-          </code>{" "}
-          に以下を追記します。
-        </p>
-        <pre className="bg-muted/50 p-4 rounded text-sm overflow-x-auto">
-          <code>{`//npm.github.kddi.com/:_authToken=<取得したトークン>
-@yu-izumoto:registry=https://npm.github.kddi.com`}</code>
-        </pre>
-      </div>
-
-      {/* Step 3 */}
-      <div className="space-y-4">
-        <h2 className="font-[var(--font-uragaki-heading)] text-xl font-bold">
-          3. パッケージのインストール
-        </h2>
-        <pre className="bg-muted/50 p-4 rounded text-sm overflow-x-auto">
-          <code>npm install @yu-izumoto/uragaki-ui</code>
-        </pre>
-      </div>
-
-      {/* Step 4 */}
-      <div className="space-y-4">
-        <h2 className="font-[var(--font-uragaki-heading)] text-xl font-bold">
-          4. 使い方
+          2. 使い方
         </h2>
         <p className="text-sm text-foreground/80">
           コンポーネントとスタイルシートをインポートして使用します。
         </p>
         <pre className="bg-muted/50 p-4 rounded text-sm overflow-x-auto">
-          <code>{`import { UragakiButton, UragakiCard, UragakiInput } from "@yu-izumoto/uragaki-ui";
-import "@yu-izumoto/uragaki-ui/styles.css";
+          <code>{`import { UragakiButton, UragakiCard, UragakiInput } from "uragaki-ui";
+import "uragaki-ui/styles.css";
 
 function App() {
   return (
