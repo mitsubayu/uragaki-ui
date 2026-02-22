@@ -59,7 +59,9 @@
       "Bash(npx playwright:*)",
       "WebFetch(domain:zenn.dev)",
       "Bash(gh run list:*)",
-      "Bash(node scripts/take-screenshots.mjs:*)"
+      "Bash(node scripts/take-screenshots.mjs:*)",
+      "Bash(gh release create:*)",
+      "Bash(git remote get-url:*)"
     ]
   }
 }
